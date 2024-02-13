@@ -1,26 +1,25 @@
 import "package:flutter/material.dart";
 
 class MaterialTheme {
-  final TextTheme textTheme;
+  const MaterialTheme();
 
-  const MaterialTheme(this.textTheme);
-
+// Light Theme
   static MaterialScheme lightScheme() {
     return const MaterialScheme(
       brightness: Brightness.light,
-      primary: Color(0xff6a538c),
-      surfaceTint: Color(0xff6a538c),
+      primary: Color(0xFF7B2CDE),
+      surfaceTint: Color(0xff6A538C),
       onPrimary: Color(0xffffffff),
-      primaryContainer: Color(0xffeddcff),
-      onPrimaryContainer: Color(0xff250e44),
+      primaryContainer: Color(0xffEDDCFF),
+      onPrimaryContainer: Color(0xff280056),
       secondary: Color(0xff7e4e7c),
       onSecondary: Color(0xffffffff),
-      secondaryContainer: Color(0xffffd6f9),
-      onSecondaryContainer: Color(0xff320935),
-      tertiary: Color(0xff784f82),
+      secondaryContainer: Color(0xffFFD6F9),
+      onSecondaryContainer: Color(0xff37003B),
+      tertiary: Color(0xff834594),
       onTertiary: Color(0xffffffff),
-      tertiaryContainer: Color(0xfffbd7ff),
-      onTertiaryContainer: Color(0xff2f0a3a),
+      tertiaryContainer: Color(0xffFBD7FF),
+      onTertiaryContainer: Color(0xff330044),
       error: Color(0xffba1a1a),
       onError: Color(0xffffffff),
       errorContainer: Color(0xffffdad6),
@@ -32,24 +31,24 @@ class MaterialTheme {
       surfaceVariant: Color(0xffe8e0eb),
       onSurfaceVariant: Color(0xff4a454e),
       outline: Color(0xff7b757f),
-      outlineVariant: Color(0xffcbc4cf),
+      outlineVariant: Color(0xffCBC4CF),
       shadow: Color(0xff000000),
       scrim: Color(0xff000000),
       inverseSurface: Color(0xff322f35),
       inverseOnSurface: Color(0xfff6eef7),
-      inversePrimary: Color(0xffd6bbfb),
-      primaryFixed: Color(0xffeddcff),
-      onPrimaryFixed: Color(0xff250e44),
-      primaryFixedDim: Color(0xffd6bbfb),
-      onPrimaryFixedVariant: Color(0xff523c73),
-      secondaryFixed: Color(0xffffd6f9),
-      onSecondaryFixed: Color(0xff320935),
-      secondaryFixedDim: Color(0xffeeb4e9),
-      onSecondaryFixedVariant: Color(0xff633663),
-      tertiaryFixed: Color(0xfffbd7ff),
-      onTertiaryFixed: Color(0xff2f0a3a),
-      tertiaryFixedDim: Color(0xffe7b6f0),
-      onTertiaryFixedVariant: Color(0xff5f3869),
+      inversePrimary: Color(0xffD7BAFF),
+      primaryFixed: Color(0xffEDDCFF),
+      onPrimaryFixed: Color(0xff280056),
+      primaryFixedDim: Color(0xffD7BAFF),
+      onPrimaryFixedVariant: Color(0xff6100BE),
+      secondaryFixed: Color(0xffFFD6F9),
+      onSecondaryFixed: Color(0xff37003B),
+      secondaryFixedDim: Color(0xffFFA9FC),
+      onSecondaryFixedVariant: Color(0xff7E0287),
+      tertiaryFixed: Color(0xffFBD7FF),
+      onTertiaryFixed: Color(0xff330044),
+      tertiaryFixedDim: Color(0xffF0AFFF),
+      onTertiaryFixedVariant: Color(0xff682D7B),
       surfaceDim: Color(0xffdfd8e0),
       surfaceBright: Color(0xfffef7ff),
       surfaceContainerLowest: Color(0xffffffff),
@@ -64,148 +63,31 @@ class MaterialTheme {
     return theme(lightScheme().toColorScheme());
   }
 
-  static MaterialScheme lightMediumContrastScheme() {
-    return const MaterialScheme(
-      brightness: Brightness.light,
-      primary: Color(0xff6a538c),
-      surfaceTint: Color(0xff6a538c),
-      onPrimary: Color(0xffffffff),
-      primaryContainer: Color(0xff816aa4),
-      onPrimaryContainer: Color(0xffffffff),
-      secondary: Color(0xff5f325f),
-      onSecondary: Color(0xffffffff),
-      secondaryContainer: Color(0xff966394),
-      onSecondaryContainer: Color(0xffffffff),
-      tertiary: Color(0xff5a3465),
-      onTertiary: Color(0xffffffff),
-      tertiaryContainer: Color(0xff90659a),
-      onTertiaryContainer: Color(0xffffffff),
-      error: Color(0xff8c0009),
-      onError: Color(0xffffffff),
-      errorContainer: Color(0xffda342e),
-      onErrorContainer: Color(0xffffffff),
-      background: Color(0xfffef7ff),
-      onBackground: Color(0xff1d1a20),
-      surface: Color(0xfffef7ff),
-      onSurface: Color(0xff1d1a20),
-      surfaceVariant: Color(0xffe8e0eb),
-      onSurfaceVariant: Color(0xff46414a),
-      outline: Color(0xff625d67),
-      outlineVariant: Color(0xff7e7982),
-      shadow: Color(0xff000000),
-      scrim: Color(0xff000000),
-      inverseSurface: Color(0xff322f35),
-      inverseOnSurface: Color(0xfff6eef7),
-      inversePrimary: Color(0xffd6bbfb),
-      primaryFixed: Color(0xff816aa4),
-      onPrimaryFixed: Color(0xffffffff),
-      primaryFixedDim: Color(0xff68518a),
-      onPrimaryFixedVariant: Color(0xffffffff),
-      secondaryFixed: Color(0xff966394),
-      onSecondaryFixed: Color(0xffffffff),
-      secondaryFixedDim: Color(0xff7b4b7a),
-      onSecondaryFixedVariant: Color(0xffffffff),
-      tertiaryFixed: Color(0xff90659a),
-      onTertiaryFixed: Color(0xffffffff),
-      tertiaryFixedDim: Color(0xff764d80),
-      onTertiaryFixedVariant: Color(0xffffffff),
-      surfaceDim: Color(0xffdfd8e0),
-      surfaceBright: Color(0xfffef7ff),
-      surfaceContainerLowest: Color(0xffffffff),
-      surfaceContainerLow: Color(0xfff9f1f9),
-      surfaceContainer: Color(0xfff3ecf4),
-      surfaceContainerHigh: Color(0xffede6ee),
-      surfaceContainerHighest: Color(0xffe7e0e8),
-    );
-  }
-
-  ThemeData lightMediumContrast() {
-    return theme(lightMediumContrastScheme().toColorScheme());
-  }
-
-  static MaterialScheme lightHighContrastScheme() {
-    return const MaterialScheme(
-      brightness: Brightness.light,
-      primary: Color(0xff6b538c),
-      surfaceTint: Color(0xff6a538c),
-      onPrimary: Color(0xffffffff),
-      primaryContainer: Color(0xff4e386f),
-      onPrimaryContainer: Color(0xffffffff),
-      secondary: Color(0xff3a103c),
-      onSecondary: Color(0xffffffff),
-      secondaryContainer: Color(0xff5f325f),
-      onSecondaryContainer: Color(0xffffffff),
-      tertiary: Color(0xff361242),
-      onTertiary: Color(0xffffffff),
-      tertiaryContainer: Color(0xff5a3465),
-      onTertiaryContainer: Color(0xffffffff),
-      error: Color(0xff4e0002),
-      onError: Color(0xffffffff),
-      errorContainer: Color(0xff8c0009),
-      onErrorContainer: Color(0xffffffff),
-      background: Color(0xfffef7ff),
-      onBackground: Color(0xff1d1a20),
-      surface: Color(0xfffef7ff),
-      onSurface: Color(0xff000000),
-      surfaceVariant: Color(0xffe8e0eb),
-      onSurfaceVariant: Color(0xff26222a),
-      outline: Color(0xff46414a),
-      outlineVariant: Color(0xff46414a),
-      shadow: Color(0xff000000),
-      scrim: Color(0xff000000),
-      inverseSurface: Color(0xff322f35),
-      inverseOnSurface: Color(0xffffffff),
-      inversePrimary: Color(0xfff4e7ff),
-      primaryFixed: Color(0xff4e386f),
-      onPrimaryFixed: Color(0xffffffff),
-      primaryFixedDim: Color(0xff372157),
-      onPrimaryFixedVariant: Color(0xffffffff),
-      secondaryFixed: Color(0xff5f325f),
-      onSecondaryFixed: Color(0xffffffff),
-      secondaryFixedDim: Color(0xff461c47),
-      onSecondaryFixedVariant: Color(0xffffffff),
-      tertiaryFixed: Color(0xff5a3465),
-      onTertiaryFixed: Color(0xffffffff),
-      tertiaryFixedDim: Color(0xff421d4d),
-      onTertiaryFixedVariant: Color(0xffffffff),
-      surfaceDim: Color(0xffdfd8e0),
-      surfaceBright: Color(0xfffef7ff),
-      surfaceContainerLowest: Color(0xffffffff),
-      surfaceContainerLow: Color(0xfff9f1f9),
-      surfaceContainer: Color(0xfff3ecf4),
-      surfaceContainerHigh: Color(0xffede6ee),
-      surfaceContainerHighest: Color(0xffe7e0e8),
-    );
-  }
-
-  ThemeData lightHighContrast() {
-    return theme(lightHighContrastScheme().toColorScheme());
-  }
-
+// Dark Theme
   static MaterialScheme darkScheme() {
     return const MaterialScheme(
       brightness: Brightness.dark,
-      primary: Color(0xffd6bbfb),
-      surfaceTint: Color(0xffd6bbfb),
-      onPrimary: Color(0xff3b255b),
-      primaryContainer: Color(0xff523c73),
-      onPrimaryContainer: Color(0xffeddcff),
-      secondary: Color(0xffeeb4e9),
-      onSecondary: Color(0xff4a204b),
-      secondaryContainer: Color(0xff633663),
-      onSecondaryContainer: Color(0xffffd6f9),
-      tertiary: Color(0xffe7b6f0),
-      onTertiary: Color(0xff462151),
-      tertiaryContainer: Color(0xff5f3869),
-      onTertiaryContainer: Color(0xfffbd7ff),
+      primary: Color(0xffD7BAFF),
+      surfaceTint: Color(0xffD6BBFB),
+      onPrimary: Color(0xff430088),
+      primaryContainer: Color(0xff6100BE),
+      onPrimaryContainer: Color(0xffEDDCFF),
+      secondary: Color(0xffFFA9FC),
+      onSecondary: Color(0xff590060),
+      secondaryContainer: Color(0xff7E0287),
+      onSecondaryContainer: Color(0xffFFD6F9),
+      tertiary: Color(0xffF0AFFF),
+      onTertiary: Color(0xff4F1262),
+      tertiaryContainer: Color(0xff682D7B),
+      onTertiaryContainer: Color(0xffFBD7FF),
       error: Color(0xffffb4ab),
       onError: Color(0xff690005),
       errorContainer: Color(0xff93000a),
       onErrorContainer: Color(0xffffdad6),
-      background: Color(0xff151218),
-      onBackground: Color(0xffe7e0e8),
-      surface: Color(0xff151218),
-      onSurface: Color(0xffe7e0e8),
+      background: Color(0xff001F2A),
+      onBackground: Color(0xffBFE9FF),
+      surface: Color(0xff1C1B1B),
+      onSurface: Color(0xffBFE9FF),
       surfaceVariant: Color(0xff4a454e),
       onSurfaceVariant: Color(0xffcbc4cf),
       outline: Color(0xff958e99),
@@ -214,19 +96,19 @@ class MaterialTheme {
       scrim: Color(0xff000000),
       inverseSurface: Color(0xffe7e0e8),
       inverseOnSurface: Color(0xff322f35),
-      inversePrimary: Color(0xff6a538c),
-      primaryFixed: Color(0xffeddcff),
-      onPrimaryFixed: Color(0xff250e44),
-      primaryFixedDim: Color(0xffd6bbfb),
-      onPrimaryFixedVariant: Color(0xff523c73),
-      secondaryFixed: Color(0xffffd6f9),
+      inversePrimary: Color(0xff7B2CDE),
+      primaryFixed: Color(0xffEDDCFF),
+      onPrimaryFixed: Color(0xff250E44),
+      primaryFixedDim: Color(0xffD7BAFF),
+      onPrimaryFixedVariant: Color(0xff6100BE),
+      secondaryFixed: Color(0xffFFD6F9),
       onSecondaryFixed: Color(0xff320935),
-      secondaryFixedDim: Color(0xffeeb4e9),
-      onSecondaryFixedVariant: Color(0xff633663),
-      tertiaryFixed: Color(0xfffbd7ff),
-      onTertiaryFixed: Color(0xff2f0a3a),
-      tertiaryFixedDim: Color(0xffe7b6f0),
-      onTertiaryFixedVariant: Color(0xff5f3869),
+      secondaryFixedDim: Color(0xffFFA9FC),
+      onSecondaryFixedVariant: Color(0xff7E0287),
+      tertiaryFixed: Color(0xffFBD7FF),
+      onTertiaryFixed: Color(0xff2F0A3A),
+      tertiaryFixedDim: Color(0xffE7B6F0),
+      onTertiaryFixedVariant: Color(0xff682D7B),
       surfaceDim: Color(0xff151218),
       surfaceBright: Color(0xff3b383e),
       surfaceContainerLowest: Color(0xff100d12),
@@ -241,137 +123,33 @@ class MaterialTheme {
     return theme(darkScheme().toColorScheme());
   }
 
-  static MaterialScheme darkMediumContrastScheme() {
-    return const MaterialScheme(
-      brightness: Brightness.dark,
-      primary: Color(0xffd6bbfb),
-      surfaceTint: Color(0xffd6bbfb),
-      onPrimary: Color(0xff20073f),
-      primaryContainer: Color(0xff9e85c2),
-      onPrimaryContainer: Color(0xff000000),
-      secondary: Color(0xfff3b8ee),
-      onSecondary: Color(0xff2c032f),
-      secondaryContainer: Color(0xffb47fb1),
-      onSecondaryContainer: Color(0xff000000),
-      tertiary: Color(0xffecbaf5),
-      onTertiary: Color(0xff290435),
-      tertiaryContainer: Color(0xffae81b8),
-      onTertiaryContainer: Color(0xff000000),
-      error: Color(0xffffbab1),
-      onError: Color(0xff370001),
-      errorContainer: Color(0xffff5449),
-      onErrorContainer: Color(0xff000000),
-      background: Color(0xff151218),
-      onBackground: Color(0xffe7e0e8),
-      surface: Color(0xff151218),
-      onSurface: Color(0xfffff9fd),
-      surfaceVariant: Color(0xff4a454e),
-      onSurfaceVariant: Color(0xffd0c8d3),
-      outline: Color(0xffa7a0ab),
-      outlineVariant: Color(0xff87818b),
-      shadow: Color(0xff000000),
-      scrim: Color(0xff000000),
-      inverseSurface: Color(0xffe7e0e8),
-      inverseOnSurface: Color(0xff2c292f),
-      inversePrimary: Color(0xff533d74),
-      primaryFixed: Color(0xffeddcff),
-      onPrimaryFixed: Color(0xff1a023a),
-      primaryFixedDim: Color(0xffd6bbfb),
-      onPrimaryFixedVariant: Color(0xff412b61),
-      secondaryFixed: Color(0xffffd6f9),
-      onSecondaryFixed: Color(0xff260029),
-      secondaryFixedDim: Color(0xffeeb4e9),
-      onSecondaryFixedVariant: Color(0xff512552),
-      tertiaryFixed: Color(0xfffbd7ff),
-      onTertiaryFixed: Color(0xff23002f),
-      tertiaryFixedDim: Color(0xffe7b6f0),
-      onTertiaryFixedVariant: Color(0xff4d2757),
-      surfaceDim: Color(0xff151218),
-      surfaceBright: Color(0xff3b383e),
-      surfaceContainerLowest: Color(0xff100d12),
-      surfaceContainerLow: Color(0xff1d1a20),
-      surfaceContainer: Color(0xff211e24),
-      surfaceContainerHigh: Color(0xff2c292f),
-      surfaceContainerHighest: Color(0xff37333a),
+// Fonts Setup
+  TextTheme text() {
+    return const TextTheme(
+      displayLarge: TextStyle(fontFamily: "Roboto_Slab"),
+      displayMedium: TextStyle(fontFamily: "Roboto_Slab"),
+      displaySmall: TextStyle(fontFamily: "Roboto_Slab"),
+      headlineLarge: TextStyle(fontFamily: "Righteous"),
+      headlineMedium: TextStyle(fontFamily: "Righteous"),
+      headlineSmall: TextStyle(fontFamily: "Righteous"),
+      titleLarge: TextStyle(fontFamily: "Poppins"),
+      titleMedium: TextStyle(fontFamily: "Poppins"),
+      titleSmall: TextStyle(fontFamily: "Poppins"),
+      // Label and Body just inherit robotoTextTheme
     );
-  }
-
-  ThemeData darkMediumContrast() {
-    return theme(darkMediumContrastScheme().toColorScheme());
-  }
-
-  static MaterialScheme darkHighContrastScheme() {
-    return const MaterialScheme(
-      brightness: Brightness.dark,
-      primary: Color(0xffd6bbfb),
-      surfaceTint: Color(0xffd6bbfb),
-      onPrimary: Color(0xff000000),
-      primaryContainer: Color(0xffdabfff),
-      onPrimaryContainer: Color(0xff000000),
-      secondary: Color(0xfffff9fa),
-      onSecondary: Color(0xff000000),
-      secondaryContainer: Color(0xfff3b8ee),
-      onSecondaryContainer: Color(0xff000000),
-      tertiary: Color(0xfffff9fa),
-      onTertiary: Color(0xff000000),
-      tertiaryContainer: Color(0xffecbaf5),
-      onTertiaryContainer: Color(0xff000000),
-      error: Color(0xfffff9f9),
-      onError: Color(0xff000000),
-      errorContainer: Color(0xffffbab1),
-      onErrorContainer: Color(0xff000000),
-      background: Color(0xff151218),
-      onBackground: Color(0xffe7e0e8),
-      surface: Color(0xff151218),
-      onSurface: Color(0xffffffff),
-      surfaceVariant: Color(0xff4a454e),
-      onSurfaceVariant: Color(0xfffff9fd),
-      outline: Color(0xffd0c8d3),
-      outlineVariant: Color(0xffd0c8d3),
-      shadow: Color(0xff000000),
-      scrim: Color(0xff000000),
-      inverseSurface: Color(0xffe7e0e8),
-      inverseOnSurface: Color(0xff000000),
-      inversePrimary: Color(0xff341e54),
-      primaryFixed: Color(0xfff0e1ff),
-      onPrimaryFixed: Color(0xff000000),
-      primaryFixedDim: Color(0xffdabfff),
-      onPrimaryFixedVariant: Color(0xff20073f),
-      secondaryFixed: Color(0xffffddf9),
-      onSecondaryFixed: Color(0xff000000),
-      secondaryFixedDim: Color(0xfff3b8ee),
-      onSecondaryFixedVariant: Color(0xff2c032f),
-      tertiaryFixed: Color(0xfffcddff),
-      onTertiaryFixed: Color(0xff000000),
-      tertiaryFixedDim: Color(0xffecbaf5),
-      onTertiaryFixedVariant: Color(0xff290435),
-      surfaceDim: Color(0xff151218),
-      surfaceBright: Color(0xff3b383e),
-      surfaceContainerLowest: Color(0xff100d12),
-      surfaceContainerLow: Color(0xff1d1a20),
-      surfaceContainer: Color(0xff211e24),
-      surfaceContainerHigh: Color(0xff2c292f),
-      surfaceContainerHighest: Color(0xff37333a),
-    );
-  }
-
-  ThemeData darkHighContrast() {
-    return theme(darkHighContrastScheme().toColorScheme());
   }
 
   ThemeData theme(ColorScheme colorScheme) => ThemeData(
         useMaterial3: true,
         brightness: colorScheme.brightness,
         colorScheme: colorScheme,
-        textTheme: textTheme.apply(
+        textTheme: text().apply(
           bodyColor: colorScheme.onSurface,
           displayColor: colorScheme.onSurface,
         ),
         scaffoldBackgroundColor: colorScheme.background,
         canvasColor: colorScheme.surface,
       );
-
-  List<ExtendedColor> get extendedColors => [];
 }
 
 class MaterialScheme {
@@ -515,39 +293,4 @@ extension MaterialSchemeUtils on MaterialScheme {
       inversePrimary: inversePrimary,
     );
   }
-}
-
-class ExtendedColor {
-  final Color seed, value;
-  final ColorFamily light;
-  final ColorFamily lightHighContrast;
-  final ColorFamily lightMediumContrast;
-  final ColorFamily dark;
-  final ColorFamily darkHighContrast;
-  final ColorFamily darkMediumContrast;
-
-  const ExtendedColor({
-    required this.seed,
-    required this.value,
-    required this.light,
-    required this.lightHighContrast,
-    required this.lightMediumContrast,
-    required this.dark,
-    required this.darkHighContrast,
-    required this.darkMediumContrast,
-  });
-}
-
-class ColorFamily {
-  const ColorFamily({
-    required this.color,
-    required this.onColor,
-    required this.colorContainer,
-    required this.onColorContainer,
-  });
-
-  final Color color;
-  final Color onColor;
-  final Color colorContainer;
-  final Color onColorContainer;
 }
