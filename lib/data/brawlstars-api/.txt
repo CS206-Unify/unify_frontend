@@ -1,0 +1,2 @@
+This folder will contain all the files that has to deal with API calls to Brawl Stars API (Functions with Future return types)
+Serializations are to be placed under "serializers" sub-folder

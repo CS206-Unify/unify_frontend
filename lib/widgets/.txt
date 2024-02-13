@@ -1,0 +1,15 @@
+This folder will contain all the components involved in creating the actual screens
+
+Sub-folder structure is based on the following
+
+1 - Categorized based on Iteration 2 (NOT Iteration 2 (Assets)!) Figma page categorization, if involved in mutliple different places, put under "common"
+2 - Categorized based on types such as text, card, list, form or screens
+3 - From here on, the categorization is not necessary, full freedom on how you wanted to put it
+
+What should be here
+- Widgets
+- Ephemeral States for Stateful Widgets
+- Consumer, ChangeNotifierProvider, MultiProvider for some Stateful Widgets
+
+What should not be here
+- Models of ChangeNotifier (Put under lib/model folder)

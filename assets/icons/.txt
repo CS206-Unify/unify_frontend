@@ -1,0 +1,2 @@
+This folder contains all the SVG icons to be used in the application
+It has already been imported under the pubspec.yml file

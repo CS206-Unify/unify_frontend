@@ -1,0 +1,5 @@
+This folder contains all the images and logos to be used in the application
+It has already been imported under the pubspec.yml file
+
+Note: This is only for static assets, DO NOT store dynamic assets here. 
+Dynamic assets to be stored under S3
