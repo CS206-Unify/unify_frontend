@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unify/utils/theme/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +12,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const HomePage(title: 'Flutter Demo Home Page'),
+      title: 'Unify',
+      darkTheme: ThemeData.from(
+          colorScheme: const MaterialTheme().dark().colorScheme,
+          textTheme: const MaterialTheme().text()),
+      theme: ThemeData.from(
+          colorScheme: const MaterialTheme().light().colorScheme,
+          textTheme: const MaterialTheme().text()),
+      themeMode: ThemeMode.system,
+      home: const HomePage(title: 'Unify'),
     );
   }
 }
@@ -42,7 +46,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.background,
         title: Text(widget.title),
       ),
       body: Center(
@@ -53,8 +57,40 @@ class _HomePageState extends State<HomePage> {
               'You have clicked the button this many times:',
             ),
             Text(
-              '$_counter',
+              'displayLarge',
+              style: Theme.of(context).textTheme.displayLarge,
+            ),
+            Text(
+              'displayMedium',
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
+            Text(
+              'displaySmall',
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
+            Text(
+              'headlineLarge',
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
+            Text(
+              'headlineMedium',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            Text(
+              'headlineSmall',
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            Text(
+              'titleLarge',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            Text(
+              'titleMedium',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            Text(
+              'titleSmall',
+              style: Theme.of(context).textTheme.titleSmall,
             ),
           ],
         ),
