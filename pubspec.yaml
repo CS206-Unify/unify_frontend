@@ -15,8 +15,8 @@ dependencies:
 
   # Utility Packages
 
-  # Icons
   cupertino_icons: ^1.0.2 # IOS icons
+  go_router: ^13.2.0
 
 # -------------------- ./ PACKAGES END -------------------- #
 
