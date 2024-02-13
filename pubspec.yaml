@@ -33,8 +33,11 @@ flutter:
 
   # -------------------- LOCAL ASSETS -------------------- #
   assets:
-    - assets/images/
-    - assets/icons/
+    - assets/images/brawlstars/brawler_icons/
+    - assets/images/brawlstars/misc/
+    - assets/images/brawlstars/rank_plates/
+    - assets/images/game_banner/
+    - assets/images/logos/
 
   # -------------------- LOCAL FONTS -------------------- #
   fonts:
