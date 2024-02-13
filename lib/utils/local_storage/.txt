@@ -1,0 +1,2 @@
+This folder contains all the local storage related functionalities
+Local storage will be useful for persisting some data for offline use

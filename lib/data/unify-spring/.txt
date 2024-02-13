@@ -1,0 +1,2 @@
+This file will contain all the API calls related to our SpringBoot application (Functions with Future return types)
+Serializations are to be placed under "serializers" sub-folder

@@ -1,0 +1,1 @@
+This folder will contain models that extends ChangeNotifier provided by the "provider" library
