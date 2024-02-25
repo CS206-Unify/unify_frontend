@@ -3,17 +3,18 @@ import 'package:unify/utils/theme/theme.dart';
 import 'package:unify/router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Unify());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Unify extends StatelessWidget {
+  const Unify({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Unify',
+      debugShowCheckedModeBanner: false,
       darkTheme: ThemeData.from(
           colorScheme: const MaterialTheme().dark().colorScheme,
           textTheme: const MaterialTheme().text()),
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           colorScheme: const MaterialTheme().light().colorScheme,
           textTheme: const MaterialTheme().text()),
       themeMode: ThemeMode.system,
-      routerConfig: router,      
+      routerConfig: router,
     );
   }
 }
