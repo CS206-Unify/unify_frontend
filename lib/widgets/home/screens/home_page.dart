@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:unify/widgets/common/nav/top_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -22,10 +23,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        title: Text(widget.title),
-      ),
+      appBar: const TopAppBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
