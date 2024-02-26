@@ -31,7 +31,7 @@ final GoRouter router = GoRouter(
   routes: <RouteBase>[
     // --------------- Home page --------------- //
     GoRoute(
-      path: '/',
+      path: '/home',
       builder: (BuildContext context, GoRouterState state) {
         return const HomePage(title: "Unify");
       },
@@ -51,11 +51,11 @@ final GoRouter router = GoRouter(
         return const BrawlStarsProfilePage();
       },
     ),
-    GoRoute(path: '/registration', builder: (BuildContext context, GoRouterState state) {
+    GoRoute(path: '/', builder: (BuildContext context, GoRouterState state) {
       return const RegistrationPage();
     }),
     GoRoute(
-      path: '/registration_details',
+      path: '/register',
       builder: (BuildContext context, GoRouterState state) {
         return const RegistrationDetailsPage();
       },
