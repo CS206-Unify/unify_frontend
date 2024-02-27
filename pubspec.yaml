@@ -17,6 +17,13 @@ dependencies:
 
   cupertino_icons: ^1.0.2 # IOS icons
   go_router: ^13.2.0
+  provider: ^6.1.1
+  http: ^1.2.0
+  flutter_dotenv: ^5.1.0
+  json_annotation: ^4.8.1
+  flutter_secure_storage: ^4.2.1
+  logger: ^2.0.2+1
+  shared_preferences: ^2.2.2
 
 # -------------------- ./ PACKAGES END -------------------- #
 
@@ -26,6 +33,8 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  build_runner: ^2.4.8
+  json_serializable: ^6.7.1
 
 
 flutter:
@@ -38,6 +47,7 @@ flutter:
     - assets/images/brawlstars/rank_plates/
     - assets/images/game_banner/
     - assets/images/logos/
+    - .env
 
   # -------------------- LOCAL FONTS -------------------- #
   fonts:

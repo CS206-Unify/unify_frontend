@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:unify/data/unify-spring/authentication.dart';
+import 'package:unify/data/unify-spring/serializers/authentication/registration_serializer.dart';
+import 'package:unify/model/profile/registration_model.dart';
+import 'package:unify/widgets/profile/button/routing_buttons.dart';
+import 'package:unify/widgets/profile/custom_shapes/registration_bg.dart';
+import 'package:unify/widgets/profile/form/registration_form.dart';
+import 'package:unify/widgets/profile/image/app_icon_large.dart';
+import 'package:unify/widgets/profile/text/introduce_text.dart';
+import 'package:unify/widgets/profile/text/question_text.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -8,15 +18,69 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Registration")),
-      body: const Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[Text("This is Registration Page")],
-      )),
-    );
+    return Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: Theme.of(context).colorScheme.surface,
+        child: CustomPaint(
+            painter: RegistrationBgPaint(
+                color: Theme.of(context).colorScheme.onSecondary),
+            child: Scaffold(
+              backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
+              body: SingleChildScrollView(
+                  child: Container(
+                padding: const EdgeInsets.fromLTRB(32, 20, 32, 20),
+                child: ChangeNotifierProvider(
+                  create: (context) => RegistrationModel(),
+                  child: Form(
+                      key: _formKey,
+                      child: Column(children: [
+                        const IntroText(
+                          text:
+                              "Join us in the journey of Competitive & Collaborative Mobile Esports",
+                        ),
+                        const AppIconLarge(),
+                        Container(
+                          alignment: Alignment.topCenter,
+                          margin: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+                          child: const RegistrationForm(),
+                        ),
+                        Wrap(
+                          runSpacing: 16,
+                          children: [
+                            Center(
+                              child: Consumer<RegistrationModel>(
+                                  builder: (context, formValues, child) =>
+                                      FilledButton(
+                                          onPressed: () {
+                                            if (_formKey.currentState!
+                                                .validate()) {
+                                              register(
+                                                  RegisterRequest(
+                                                      username: formValues
+                                                          .getUsername,
+                                                      email:
+                                                          formValues.getEmail,
+                                                      password: formValues
+                                                          .getPassword));
+                                            }
+                                          },
+                                          child: const Text("Register"))),
+                            ),
+                            const Divider(),
+                            const QuestionText(
+                                text: "Already have an account?"),
+                            const RoutingButton(
+                                text: "Login", location: "/login")
+                          ],
+                        )
+                      ])),
+                ),
+              )),
+            )));
   }
 }

@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:unify/utils/theme/theme.dart';
 import 'package:unify/router.dart';
 
-void main() {
+void main() async {
   runApp(const Unify());
+}
+
+class SnackBarService {
+  static final scaffoldKey = GlobalKey<ScaffoldMessengerState>();
+  static void showSnackBar({required String content}){
+    scaffoldKey.currentState?.showSnackBar(SnackBar(content: Text(content)));
+  }
 }
 
 class Unify extends StatelessWidget {
@@ -13,6 +20,7 @@ class Unify extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      scaffoldMessengerKey: SnackBarService.scaffoldKey,
       title: 'Unify',
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData.from(
