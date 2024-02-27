@@ -38,8 +38,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     ? "Please enter an email"
                     : RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                             .hasMatch(value)
-                        ? "Please enter a valid email"
-                        : null;
+                        ? null
+                        : "Please enter a valid email";
               },
               onChanged: (val) => {formValues.setEmail(val)},
             ),
