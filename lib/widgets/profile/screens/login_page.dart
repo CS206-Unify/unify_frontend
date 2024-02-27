@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:unify/data/unify-spring/authentication.dart';
+import 'package:unify/data/unify-spring/serializers/authentication/login_serializer.dart';
 import 'package:unify/model/profile/login_model.dart';
 import 'package:unify/widgets/profile/button/routing_buttons.dart';
 import 'package:unify/widgets/profile/custom_shapes/login_bg.dart';
@@ -49,12 +51,19 @@ class _LoginPageState extends State<LoginPage> {
                           runSpacing: 16,
                           children: [
                             Center(
-                              child: FilledButton(
-                                onPressed: () {
-                                  _formKey.currentState!.validate();
-                                },
-                                child: const Text("Login"),
-                              ),
+                              child: Consumer<LoginModel>(
+                                  builder: (context, formValues, child) =>
+                                      FilledButton(
+                                        onPressed: () {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            login(LoginRequest(
+                                                username: formValues.getUsername,
+                                                password: formValues.getPassword));
+                                          }
+                                        },
+                                        child: const Text("Login"),
+                                      )),
                             ),
                             const Divider(),
                             const QuestionText(text: "New to Unify?"),
