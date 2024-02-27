@@ -66,8 +66,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                                       email:
                                                           formValues.getEmail,
                                                       password: formValues
-                                                          .getPassword),
-                                                  context);
+                                                          .getPassword));
                                             }
                                           },
                                           child: const Text("Register"))),
