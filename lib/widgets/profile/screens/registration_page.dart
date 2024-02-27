@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:unify/data/unify-spring/authentication.dart';
+import 'package:unify/data/unify-spring/serializers/authentication/registration_serializer.dart';
 import 'package:unify/model/profile/registration_model.dart';
 import 'package:unify/widgets/profile/button/routing_buttons.dart';
 import 'package:unify/widgets/profile/custom_shapes/registration_bg.dart';
@@ -51,11 +53,24 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           runSpacing: 16,
                           children: [
                             Center(
-                              child: FilledButton(
-                                  onPressed: () {
-                                    _formKey.currentState!.validate();
-                                  },
-                                  child: const Text("Register")),
+                              child: Consumer<RegistrationModel>(
+                                  builder: (context, formValues, child) =>
+                                      FilledButton(
+                                          onPressed: () {
+                                            if (_formKey.currentState!
+                                                .validate()) {
+                                              register(
+                                                  RegisterRequest(
+                                                      username: formValues
+                                                          .getUsername,
+                                                      email:
+                                                          formValues.getEmail,
+                                                      password: formValues
+                                                          .getPassword),
+                                                  context);
+                                            }
+                                          },
+                                          child: const Text("Register"))),
                             ),
                             const Divider(),
                             const QuestionText(
