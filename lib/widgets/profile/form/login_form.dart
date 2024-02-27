@@ -26,6 +26,7 @@ class _LoginFormState extends State<LoginForm> {
                   ? "Please enter your username"
                   : null;
             },
+            onChanged: (val) => {formValues.setUsername(val)},
           ),
           TextFormField(
             obscureText: !_passwordVisible,
