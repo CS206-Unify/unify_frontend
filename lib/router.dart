@@ -1,5 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:unify/utils/local_storage/secure_storage.dart';
 // --------------- Page Imports --------------- //
 // --------------- Home page import --------------- //
 import 'package:unify/widgets/home/screens/home_page.dart';
@@ -23,8 +25,6 @@ import 'package:unify/widgets/manage/screens/createteam_page.dart';
 import 'package:unify/widgets/manage/screens/editteam_page.dart';
 import 'package:unify/widgets/manage/screens/manage_page.dart';
 
-
-
 // --------------- Router --------------- //
 
 final GoRouter router = GoRouter(
@@ -36,7 +36,6 @@ final GoRouter router = GoRouter(
         return const HomePage(title: "Unify");
       },
     ),
-
 
     // --------------- Profile pages --------------- //
     GoRoute(
@@ -51,9 +50,11 @@ final GoRouter router = GoRouter(
         return const BrawlStarsProfilePage();
       },
     ),
-    GoRoute(path: '/', builder: (BuildContext context, GoRouterState state) {
-      return const RegistrationPage();
-    }),
+    GoRoute(
+        path: '/',
+        builder: (BuildContext context, GoRouterState state) {
+          return const RegistrationPage();
+        }),
     GoRoute(
       path: '/register',
       builder: (BuildContext context, GoRouterState state) {
@@ -67,12 +68,13 @@ final GoRouter router = GoRouter(
       },
     ),
 
-
     // --------------- Manage pages --------------- //
-    GoRoute(path: '/manage',
+    GoRoute(
+      path: '/manage',
       builder: (BuildContext context, GoRouterState state) {
         return const ManagePage();
-      },),
+      },
+    ),
     GoRoute(
       path: '/edit_team/:id',
       builder: (BuildContext context, GoRouterState state) {
@@ -85,7 +87,6 @@ final GoRouter router = GoRouter(
         return const CreateTeamPage();
       },
     ),
-
 
     // --------------- Discover pages --------------- //
     GoRoute(
@@ -119,4 +120,21 @@ final GoRouter router = GoRouter(
       },
     ),
   ],
+  redirect: (context, state) async {
+    // TODO: Remove during production
+    final String? token = await SecureStorage.getToken();
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool('first_run') ?? true) {
+      SecureStorage.deleteToken();
+      prefs.setBool('first_run', false);
+    }
+
+    final bool loggedIn = !(token == null || token.isEmpty);
+    // Check is user is in login or register or not
+    final bool atLoginOrRegisterPage =
+        state.matchedLocation == "/login" || state.matchedLocation == "/";
+    if (loggedIn && atLoginOrRegisterPage) return "/home";
+    if (!loggedIn && !atLoginOrRegisterPage) return "/";
+    return null;
+  },
 );
