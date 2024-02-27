@@ -38,6 +38,8 @@ flutter:
     - assets/images/brawlstars/rank_plates/
     - assets/images/game_banner/
     - assets/images/logos/
+    - assets/images/flags/
+    - assets/images/avatars/
 
   # -------------------- LOCAL FONTS -------------------- #
   fonts:
