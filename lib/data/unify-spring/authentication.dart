@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 import 'package:unify/data/unify-spring/serializers/authentication/login_serializer.dart';
 import 'package:unify/data/unify-spring/serializers/authentication/registration_serializer.dart';
 import 'package:unify/data/unify-spring/serializers/authentication/token_serializer.dart';
