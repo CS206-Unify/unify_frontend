@@ -51,8 +51,8 @@ class HomePage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 children: <Widget>[
-                  RecommendationCard(display: PlayerDetails(region: 'Singapore', trophies: '114,918', name: 'Benjamin Gan', avatarUrl: 'BenjaminGan.png',)),
-                  RecommendationCard(display: PlayerDetails(region: 'Singapore', trophies: '239,820', name: 'XXX', avatarUrl: 'BenjaminGan.png',)),
+                  RecommendationCard(display: PlayerDetails(region: 'Asia Pacific', trophies: '114,918', name: 'Benjamin Gan', avatarUrl: 'BenjaminGan.png',)),
+                  RecommendationCard(display: PlayerDetails(region: 'Asia Pacific', trophies: '239,820', name: 'XXX', avatarUrl: 'BenjaminGan.png',)),
                 ],
               ),
             ),
@@ -69,8 +69,8 @@ class HomePage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 children: <Widget>[
-                  RecommendationCard(display: TeamDetails(teamName: 'Team Ninja', logoUrl: 'Unify.png', numMembers: 5, teamStats: [80,15,200,200],)),
-                  RecommendationCard(display: TeamDetails(teamName: 'Team Hornets', logoUrl: 'CODM.webp', numMembers: 8, teamStats: [40,20,180,90],)),
+                  RecommendationCard(display: TeamDetails(teamName: 'Team Ninja', region: 'Asia Pacific', logoUrl: 'Unify.png', numMembers: 5, teamStats: [80,15,200,200],)),
+                  RecommendationCard(display: TeamDetails(teamName: 'Team Hornets', region: 'Asia Pacific', logoUrl: 'CODM.webp', numMembers: 8, teamStats: [40,20,180,90],)),
                 ],
               ),
             )

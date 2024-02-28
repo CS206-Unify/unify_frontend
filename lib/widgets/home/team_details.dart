@@ -4,11 +4,12 @@ import 'package:unify/widgets/home/team_stats.dart';
 class TeamDetails extends StatelessWidget {
 
   final String teamName;
+  final String region;
   final String logoUrl;
   final int numMembers;
   final List<int> teamStats;
 
-  TeamDetails({Key? key, required this.teamName, required this.logoUrl, required this.numMembers, required this.teamStats}) : super(key: key);
+  TeamDetails({Key? key, required this.teamName, required this.region, required this.logoUrl, required this.numMembers, required this.teamStats}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class TeamDetails extends StatelessWidget {
               style: TextStyle(
                 color: Theme.of(context).colorScheme.outline,
               ),
-              " • AP",
+              " • $region",
             ),
           ],
         ), //team name + AP
