@@ -33,21 +33,11 @@ class PlayerDetails extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(2.0),
-                    child: Image.asset(
-                      'assets/images/flags/$region.png',
-                      height: 25.0,
-                      width: 35.0,
-                      fit: BoxFit.cover,
-                      alignment: Alignment.center,
-                    ), // Region Flag
-                  ), 
                   Text(
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.outline,
                     ),
-                    "  •  AP"
+                    "$region"
                   ),
                 ],
               ),
