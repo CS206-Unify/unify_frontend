@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
+import 'package:unify/widgets/common/nav/top_app_bar.dart';
+import 'package:unify/widgets/discover/card/player_card.dart';
 
 class PlayersPage extends StatefulWidget {
   const PlayersPage({super.key});
@@ -11,12 +14,26 @@ class _PlayersPageState extends State<PlayersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Players")),
-      body: const Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[Text("This is Players Page")],
-      )),
+      appBar: const TopAppBar(
+        title: "Players",
+        game: "bs",
+      ),
+      body: Container(
+        margin: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          children: const [
+            PlayerCard(
+                name: "BenjaminGan",
+                trophies: 114918,
+                wins3v3: 50212,
+                region: "NA",
+                brawler: "Pam",
+                rank: 35)
+          ],
+        ),
+      ),
+      bottomNavigationBar: const BottomNavBar(current: "discover"),
     );
   }
 }
