@@ -20,6 +20,8 @@ class BrawlStarsProfilePage extends StatefulWidget {
 }
 
 class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
+  final apiUrl = "https://jsonplaceholder.typicode.com/posts";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,13 +70,16 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
                 child: Stack(
                   children: [
                     TextField(
+                      controller: _controller,
                       decoration: InputDecoration(
                         filled: true,
                         labelText: 'Brawl Stars Bio',
                         hintText: 'Enter Bio',
                         alignLabelWithHint: true,
                         floatingLabelBehavior: FloatingLabelBehavior.always,
-                        suffixIcon: IconButton(
+                        suffix: IconButton(
+                          iconSize: 28,
+                          alignment: Alignment.center,
                           onPressed: _controller.clear,
                           icon: const Icon(Icons.highlight_off),
                         ),
@@ -82,6 +87,28 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
                       maxLines: 8,
                     ),
                   ],
+                ),
+              ),
+              SizedBox(height: 170),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // showDialog(
+                    //   context: context,
+                    //   builder: (context) {
+                    //     return const AlertDialog(
+                    //       content: Text('Your bio have been saved',
+                    //         textAlign: TextAlign.center,
+                    //       ),
+                    //     );
+                    //   },
+                    // );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  ),  
+                  child: Text('Save Bio'),
                 ),
               ),
           ],
