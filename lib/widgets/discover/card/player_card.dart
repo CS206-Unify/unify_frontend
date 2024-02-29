@@ -5,9 +5,12 @@ import 'package:unify/widgets/discover/card/player_card_sub_widgets/player_regio
 import 'package:unify/widgets/discover/card/player_card_sub_widgets/player_top_brawler.dart';
 import 'package:unify/widgets/discover/card/player_card_sub_widgets/player_trophies.dart';
 
+import 'package:unify/router.dart';
+
 class PlayerCard extends StatelessWidget {
   const PlayerCard(
       {super.key,
+      required this.id,
       this.imageUrl,
       this.region,
       required this.name,
@@ -16,6 +19,7 @@ class PlayerCard extends StatelessWidget {
       required this.brawler,
       required this.rank});
 
+  final String id;
   final String? imageUrl;
   final String name;
   final String? region;
@@ -28,37 +32,42 @@ class PlayerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: 2,
-      child: Container(
-        width: double.infinity - 32,
-        color: const Color.fromRGBO(44, 41, 47, 1),
-        padding: const EdgeInsets.all(8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Wrap(
-              spacing: 8,
-              direction: Axis.vertical,
-              children: [
-                PlayerBanner(
-                  name: name,
-                  imageUrl: imageUrl,
-                ),
-                PlayerTrophies(trophies: trophies),
-                Player3v3(wins3v3: wins3v3)
-              ],
-            ),
-            SizedBox(
-              height: 100,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
+      child: InkWell(
+        onTap: () {
+          router.go("/player_details/$id");
+        },
+        child: Container(
+          width: double.infinity - 32,
+          color: const Color.fromRGBO(44, 41, 47, 1),
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Wrap(
+                spacing: 8,
+                direction: Axis.vertical,
                 children: [
-                  PlayerRegionText(region: region),
-                  PlayerTopBrawler(brawler: brawler, rank: rank)
+                  PlayerBanner(
+                    name: name,
+                    imageUrl: imageUrl,
+                  ),
+                  PlayerTrophies(trophies: trophies),
+                  Player3v3(wins3v3: wins3v3)
                 ],
               ),
-            )
-          ],
+              SizedBox(
+                height: 100,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    PlayerRegionText(region: region),
+                    PlayerTopBrawler(brawler: brawler, rank: rank)
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
