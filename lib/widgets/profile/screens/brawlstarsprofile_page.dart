@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unify/utils/constants/bs_profile_dropdown_choices.dart';
 import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/common/nav/top_app_bar.dart';
 
@@ -34,75 +35,13 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
             SizedBox(
               height:20 ,
             ),
-            //Outside padding for Card
-            // Padding(
-            //   padding: const EdgeInsets.all(15.0),
-
-            //   //Card for Region
-            //   child: Card(
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(8.0),
-            //     ),
-            //     child: Padding(
-            //       padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-            //       child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           Container(
-            //             width: 300,
-            //             child: Column(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 Text(
-            //                   'Region',
-            //                   style: TextStyle(
-            //                     fontSize: 14.0,
-            //                     color: Theme.of(context).colorScheme.inverseSurface,
-            //                   ),
-            //                 ), 
-            //                 DropdownButton<String>(
-            //                   isExpanded: true,
-            //                   items: list.map((String value) {
-            //                     return DropdownMenuItem<String>(
-            //                       value: value,
-            //                       child: Text(
-            //                         value,
-            //                         style: const TextStyle(
-            //                           fontSize: 18,
-            //                           fontWeight: FontWeight.normal,
-            //                         ),
-            //                       ),
-            //                     );
-            //                   }).toList(),
-            //                   value: dropdownValue,
-            //                   onChanged: (String? newValue) {
-            //                     setState(() {
-            //                       dropdownValue = newValue!;
-            //                     });
-            //                   },
-            //                   borderRadius: BorderRadius.zero,
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // ),
-
             //Attempt at Region Drop Down Menu instead
             Center(
               child: DropdownMenu(
                 label: const Text('Region'),
                 width: 350,
-                initialSelection: dropdownValue,
-                dropdownMenuEntries: list.map((String item) {
-                  return DropdownMenuEntry(
-                    value: item,
-                    label: item,
-                  );
-                }).toList(),
+                initialSelection: regionEntries[0].value,
+                dropdownMenuEntries: regionEntries,
                 inputDecorationTheme: const InputDecorationTheme(
                   filled: true, 
                   constraints: BoxConstraints.expand()
