@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unify/utils/formatter/brawler_formatter.dart';
 
 class PlayerTopBrawler extends StatelessWidget {
   const PlayerTopBrawler(
@@ -18,7 +19,7 @@ class PlayerTopBrawler extends StatelessWidget {
             borderRadius: BorderRadius.circular(100),
             child: Image(
                 image: AssetImage(
-                    "assets/images/brawlstars/brawler_icons/$brawler.webp")),
+                    "assets/images/brawlstars/brawler_icons/${brawlerBackendToAssetImageStr(brawler)}")),
           ),
         ),
         Image(
