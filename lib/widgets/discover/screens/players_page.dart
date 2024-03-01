@@ -35,7 +35,7 @@ class _PlayersPageState extends State<PlayersPage> {
                   formValues.getWins3v3,
                   formValues.getWins2v2,
                   formValues.getSoloWins,
-                  10,
+                  1000,
                   0),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -43,6 +43,7 @@ class _PlayersPageState extends State<PlayersPage> {
                 } else if (snapshot.hasError) {
                   return Text("Error: ${snapshot.error}");
                 } else {
+                  _profiles.clear();
                   _profiles.addAll(snapshot.data!);
                   return ListView.builder(
                       scrollDirection: Axis.vertical,
