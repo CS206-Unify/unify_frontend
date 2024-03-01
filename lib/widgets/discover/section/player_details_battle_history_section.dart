@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:unify/data/unify-spring/serializers/discover/battle_history_serializer.dart';
 import 'package:unify/widgets/discover/heading/common_details_heading.dart';
 import 'package:unify/widgets/discover/text/player_details_battle_history_text.dart';
 
 class PlayerDetailsBattleHistorySection extends StatelessWidget {
-  const PlayerDetailsBattleHistorySection(
-      {super.key,
-      required this.wins,
-      required this.loses,
-      required this.draws});
+  const PlayerDetailsBattleHistorySection({super.key, required this.history});
 
-  final int wins;
-  final int loses;
-  final int draws;
+  final BattleHistory history;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +22,12 @@ class PlayerDetailsBattleHistorySection extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PlayerDetailsBattleHistoryText(type: "Wins", count: wins),
-                PlayerDetailsBattleHistoryText(type: "Loses", count: loses),
-                PlayerDetailsBattleHistoryText(type: "Draws", count: draws),
+                PlayerDetailsBattleHistoryText(
+                    type: "Wins", count: history.wins),
+                PlayerDetailsBattleHistoryText(
+                    type: "Loses", count: history.loses),
+                PlayerDetailsBattleHistoryText(
+                    type: "Draws", count: history.draws),
               ],
             )
           ],
