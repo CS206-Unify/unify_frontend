@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
+import 'package:unify/widgets/profile/edit_profile_icon.dart';
+import 'package:unify/widgets/profile/top_profile_bar.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,12 +14,14 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Profile")),
-      body: const Center(
+      appBar: const TopProfileBar(),
+      body: Center(
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[Text("This is Profile Page")],
+        children: <Widget>[
+          EditProfileIcon(),
+        ],
       )),
+      bottomNavigationBar: const BottomNavBar(current: ""),
     );
   }
 }
