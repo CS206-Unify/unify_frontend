@@ -16,7 +16,7 @@ class _EditProfileIconState extends State<EditProfileIcon> {
     return Stack(
       children: [
         Container(
-          margin: EdgeInsets.all(20.0), // Set the margin around the SizedBox
+          margin: EdgeInsets.all(10.0), // Set the margin around the SizedBox
           child: SizedBox(
             width: 140.0, // Set the width of the image
             height: 140.0, // Set the height of the image
@@ -29,7 +29,8 @@ class _EditProfileIconState extends State<EditProfileIcon> {
           bottom: 0,
           right: 0,
           child: IconButton(
-            icon: Icon(Icons.edit, color: Color.fromARGB(255, 174, 114, 241)),
+            icon:
+                Icon(Icons.edit, color: Theme.of(context).colorScheme.primary),
             onPressed: () {
               // Add your edit profile logic here
             },
