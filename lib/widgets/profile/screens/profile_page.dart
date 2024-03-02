@@ -77,6 +77,169 @@ class _ProfilePageState extends State<ProfilePage> {
                     ?.apply(color: Theme.of(context).colorScheme.primary),
               ),
             ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color.fromARGB(255, 61, 61, 61)
+                              .withOpacity(0.9),
+                        ),
+                      ],
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    padding: EdgeInsets.all(10.0),
+                    child: SizedBox.square(
+                      dimension: 40,
+                      child: Image.asset(
+                        'assets/images/logos/Google.png',
+                      ),
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color.fromARGB(255, 61, 61, 61)
+                              .withOpacity(0.9),
+                        ),
+                      ],
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    padding: EdgeInsets.all(10.0),
+                    child: SizedBox.square(
+                      dimension: 40,
+                      child: Image.asset(
+                        'assets/images/logos/Supercell.png',
+                      ),
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color.fromARGB(255, 61, 61, 61)
+                              .withOpacity(0.9),
+                        ),
+                      ],
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    padding: EdgeInsets.all(10.0),
+                    child: SizedBox.square(
+                      dimension: 40,
+                      child: Image.asset(
+                        'assets/images/logos/Garena.png',
+                      ),
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color.fromARGB(255, 61, 61, 61)
+                              .withOpacity(0.9),
+                        ),
+                      ],
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    padding: EdgeInsets.all(10.0),
+                    child: SizedBox.square(
+                      dimension: 40,
+                      child: Image.asset(
+                        'assets/images/logos/Moonton.png',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(20.0),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Edit Bio",
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.apply(color: Theme.of(context).colorScheme.primary),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20.0),
+                    height: 80,
+                    width: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color.fromARGB(255, 61, 61, 61)
+                              .withOpacity(0.9),
+                        ),
+                      ],
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                          20.0), // Clip it with the same border radius
+                      child: Image.asset('assets/images/logos/MLBB.jpg'),
+                      // Set the fit to cover to make sure the image covers the rounded corners
+                    )),
+                Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20.0),
+                    height: 80,
+                    width: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color.fromARGB(255, 61, 61, 61)
+                              .withOpacity(0.9),
+                        ),
+                      ],
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                          20.0), // Clip it with the same border radius
+                      child: Image.asset('assets/images/logos/BS.png'),
+                      // Set the fit to cover to make sure the image covers the rounded corners
+                    )),
+                Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20.0),
+                    height: 80,
+                    width: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color.fromARGB(255, 61, 61, 61)
+                              .withOpacity(0.9),
+                        ),
+                      ],
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                          20.0), // Clip it with the same border radius
+                      child: Image.asset(
+                        'assets/images/logos/CODM.webp',
+                        fit: BoxFit
+                            .fill, // Correct placement of the fit property
+                      ),
+                    )),
+              ],
+            )
           ],
         ),
       ),
