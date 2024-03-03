@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/profile/edit_profile_icon.dart';
 import 'package:unify/widgets/profile/top_profile_bar.dart';
+import 'package:unify/router.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -196,25 +197,30 @@ class _ProfilePageState extends State<ProfilePage> {
                       // Set the fit to cover to make sure the image covers the rounded corners
                     )),
                 Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20.0),
-                    height: 80,
-                    width: 80,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color.fromARGB(255, 61, 61, 61)
-                              .withOpacity(0.9),
-                        ),
-                      ],
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(
-                          20.0), // Clip it with the same border radius
+                  margin: EdgeInsets.symmetric(horizontal: 20.0),
+                  height: 80,
+                  width: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color.fromARGB(255, 61, 61, 61)
+                            .withOpacity(0.9),
+                      ),
+                    ],
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        // Add your navigation logic here
+                        router.go("/brawl_stars_profile");
+                      },
                       child: Image.asset('assets/images/logos/BS.png'),
-                      // Set the fit to cover to make sure the image covers the rounded corners
-                    )),
+                    ),
+                  ),
+                ),
                 Container(
                     margin: EdgeInsets.symmetric(horizontal: 20.0),
                     height: 80,
