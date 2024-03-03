@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unify/utils/local_storage/secure_storage.dart';
 import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/profile/edit_profile_icon.dart';
 import 'package:unify/widgets/profile/top_profile_bar.dart';
@@ -12,6 +13,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  Future<void> logout(BuildContext context) async {
+    // Remove the user's token from secure storage to log them out
+    SecureStorage.deleteToken();
+
+    // Optionally clear any other user-specific data from shared preferences or other local storage
+
+    router.go("/login");
+  }
+
   String name = "Benjamin Gan";
   String email = "benjamin.gan@gmail.com";
 
@@ -224,7 +234,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     borderRadius: BorderRadius.circular(20.0),
                     child: GestureDetector(
                       onTap: () {
-                        // Add your navigation logic here
                         router.go("/brawl_stars_profile");
                       },
                       child: Image.asset('assets/images/logos/BS.png'),
@@ -246,26 +255,23 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(
-                          20.0), // Clip it with the same border radius
+                      borderRadius: BorderRadius.circular(20.0),
                       child: Image.asset(
                         'assets/images/logos/CODM.webp',
-                        fit: BoxFit
-                            .fill, // Correct placement of the fit property
+                        fit: BoxFit.fill,
                       ),
                     )),
               ],
             ),
             Padding(
-              padding:
-                  EdgeInsets.symmetric(vertical: 40.0), // Add vertical margin
+              padding: EdgeInsets.symmetric(vertical: 40.0),
               child: ElevatedButton.icon(
                 onPressed: () {
-                  // Your logout logic here
+                  logout(context);
                 },
                 icon: Icon(
-                  Icons.logout, // Choose the icon that fits your design
-                  color: Theme.of(context).colorScheme.onPrimary, // Icon color
+                  Icons.logout,
+                  color: Theme.of(context).colorScheme.onPrimary,
                 ),
                 label: Text(
                   "Logout",
@@ -276,7 +282,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
                     Theme.of(context).colorScheme.primary,
-                  ), // Background color
+                  ),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18.0),
@@ -284,7 +290,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   padding: MaterialStateProperty.all(
                     EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                  ), // Button padding
+                  ),
                 ),
               ),
             )
