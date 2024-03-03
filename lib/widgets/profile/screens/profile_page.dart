@@ -33,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
           children: <Widget>[
             EditProfileIcon(),
             Container(
-              margin: EdgeInsets.all(10.0),
+              margin: EdgeInsets.symmetric(vertical: 5.0),
               child: Text(
                 name,
                 style: Theme.of(context)
@@ -50,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ?.apply(color: Theme.of(context).colorScheme.secondary),
             ),
             Container(
-              width: 200,
+              width: 300,
               child: DropdownButton<String>(
                 isExpanded: true,
                 value: selectedCountry,
@@ -68,7 +68,12 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.all(20.0),
+              margin: EdgeInsets.only(
+                left: 20.0,
+                top: 10.0,
+                right: 20.0,
+                bottom: 10.0,
+              ),
               alignment: Alignment.centerLeft,
               child: Text(
                 "Integrations",
@@ -96,7 +101,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     padding: EdgeInsets.all(10.0),
                     child: SizedBox.square(
-                      dimension: 40,
+                      dimension: 30,
                       child: Image.asset(
                         'assets/images/logos/Google.png',
                       ),
@@ -115,7 +120,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     padding: EdgeInsets.all(10.0),
                     child: SizedBox.square(
-                      dimension: 40,
+                      dimension: 30,
                       child: Image.asset(
                         'assets/images/logos/Supercell.png',
                       ),
@@ -134,7 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     padding: EdgeInsets.all(10.0),
                     child: SizedBox.square(
-                      dimension: 40,
+                      dimension: 30,
                       child: Image.asset(
                         'assets/images/logos/Garena.png',
                       ),
@@ -153,7 +158,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     padding: EdgeInsets.all(10.0),
                     child: SizedBox.square(
-                      dimension: 40,
+                      dimension: 30,
                       child: Image.asset(
                         'assets/images/logos/Moonton.png',
                       ),
@@ -163,7 +168,12 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.all(20.0),
+              margin: EdgeInsets.only(
+                left: 20.0,
+                top: 10.0,
+                right: 20.0,
+                bottom: 10.0,
+              ),
               alignment: Alignment.centerLeft,
               child: Text(
                 "Edit Bio",
@@ -245,6 +255,38 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     )),
               ],
+            ),
+            Padding(
+              padding:
+                  EdgeInsets.symmetric(vertical: 40.0), // Add vertical margin
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  // Your logout logic here
+                },
+                icon: Icon(
+                  Icons.logout, // Choose the icon that fits your design
+                  color: Theme.of(context).colorScheme.onPrimary, // Icon color
+                ),
+                label: Text(
+                  "Logout",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    Theme.of(context).colorScheme.primary,
+                  ), // Background color
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                  ),
+                  padding: MaterialStateProperty.all(
+                    EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  ), // Button padding
+                ),
+              ),
             )
           ],
         ),
