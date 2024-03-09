@@ -14,6 +14,9 @@ class ProfileDetails {
   final int winsSolo;
   final List<BrawlerDetails> brawlers;
   final String playerTag;
+  final int recentWins;
+  final int recentLoses;
+  final int recentDraws;
 
   ProfileDetails(
       {required this.id,
@@ -27,7 +30,11 @@ class ProfileDetails {
       required this.wins3v3,
       required this.wins2v2,
       required this.winsSolo,
-      required this.brawlers, required this.playerTag});
+      required this.brawlers,
+      required this.playerTag,
+      required this.recentWins,
+      required this.recentLoses,
+      required this.recentDraws});
 
   factory ProfileDetails.fromMap(Map<String, dynamic> map) {
     return ProfileDetails(
@@ -43,8 +50,10 @@ class ProfileDetails {
         wins3v3: map["bsProfile"]["player"]["threeVsThreeVictories"],
         wins2v2: map["bsProfile"]["player"]["duoVictories"],
         winsSolo: map["bsProfile"]["player"]["soloVictories"],
-        brawlers: (map["bsProfile"]["player"]["brawlers"]
-                as List)
+        recentWins: map["bsProfile"]["wins"],
+        recentLoses: map["bsProfile"]["losses"],
+        recentDraws: map["bsProfile"]["draws"],
+        brawlers: (map["bsProfile"]["player"]["brawlers"] as List)
             .map((item) => BrawlerDetails.fromJson(item))
             .toList());
   }
