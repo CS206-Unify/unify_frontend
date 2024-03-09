@@ -63,39 +63,3 @@ Future<ProfileDetails> getProfileById(String userId) async {
     rethrow;
   }
 }
-
-Future<BattleHistory> getBrawlStarHistory(String playerTag) async {
-  try {
-    final res = await http.get(
-        Uri.parse("https://api.brawlstars.com/v1/players/$playerTag/battlelog"),
-        headers: {
-          HttpHeaders.authorizationHeader:
-              "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjAxMDY5OTI2LTg4MjMtNGQxMi04YjAwLThmYjUzNjUxMGQ2YiIsImlhdCI6MTcwOTI5NzEyNSwic3ViIjoiZGV2ZWxvcGVyLzFlZDQ1OTZmLWE2MjUtZjExMi0zOTI3LTkwYzBiNGE1NzQ2NyIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMC4wLjAuMCJdLCJ0eXBlIjoiY2xpZW50In1dfQ.T9EJA1zpRGfxNlzcRY60tmcTfXXVfRFjsbjtM8TuB9uaVMYPXUDeyFVRr7EpKWHrYylibuKlp5a9yPCPmhD1HA",
-        });
-
-    if (res.statusCode == 200) {
-      Map<String, int> map =
-          Map.fromEntries({"victory": 0, "defeat": 0, "draw": 0}.entries);
-
-      for (var item in (json.decode(res.body)["items"] as List<dynamic>)) {
-        String battleResult = item["battle"]["result"];
-        map[battleResult] = (map[battleResult] ?? 0) + 1;
-      }
-
-      return BattleHistory(
-          wins: map["victory"] ?? 0,
-          loses: map["defeat"] ?? 0,
-          draws: map["draw"] ?? 0);
-
-    } else {
-      SnackBarService.showSnackBar(
-          content: CommonError.fromJson(
-                  json.decode(res.body) as Map<String, dynamic>)
-              .message!);
-      throw Error();
-    }
-  } catch (e) {
-    SnackBarService.showSnackBar(content: e.toString());
-    rethrow;
-  }
-}
