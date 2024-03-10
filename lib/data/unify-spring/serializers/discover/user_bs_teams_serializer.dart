@@ -8,6 +8,8 @@ class UserBsTeamsListing {
 
   factory UserBsTeamsListing.fromMap(Map<String, dynamic> map) {
     return UserBsTeamsListing(
-        id: map["_id"], name: map["teamName"], imgUrl: map["imageString"]);
+        id: map["_id"],
+        name: map["teamName"],
+        imgUrl: map["imageString"] ?? "");
   }
 }
