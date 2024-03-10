@@ -18,15 +18,16 @@ Future<List<ProfileListing>> discoverProfile(
   try {
     final res = await http.get(
         Uri.parse(
-            "$unifyDiscoverServiceUrl/profile?region=$region&language=English&trophies=$trophies&threeVThreeWins=$wins3v3&twoVTwoWins=$wins2v2&soloWins=$winsSolo&pageSize=$pageSize&pageNumber=$pageNumber"),
+            "$unifyDiscoverServiceUrl/profile?region=${region == "" ? "Any" : region}&language=English&trophies=$trophies&threeVThreeWins=$wins3v3&twoVTwoWins=$wins2v2&soloWins=$winsSolo&pageSize=$pageSize&pageNumber=$pageNumber"),
         headers: {
           HttpHeaders.authorizationHeader:
               "Bearer ${await SecureStorage.getToken()}"
         });
 
-    List<ProfileListing> profiles = (json.decode(res.body)['bsProfileListingList'] as List)
-        .map((item) => ProfileListing.fromMap(item))
-        .toList();
+    List<ProfileListing> profiles =
+        (json.decode(res.body)['bsProfileListingList'] as List)
+            .map((item) => ProfileListing.fromMap(item))
+            .toList();
 
     return profiles;
   } catch (e) {
