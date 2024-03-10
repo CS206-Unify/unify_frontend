@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:unify/data/unify-spring/serializers/discover/battle_history_serializer.dart';
 import 'package:unify/data/unify-spring/serializers/discover/profile_details_serializer.dart';
 import 'package:unify/data/unify-spring/serializers/discover/profile_listing_serializer.dart';
 import 'package:http/http.dart' as http;
