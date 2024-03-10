@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:unify/data/unify-spring/discover.dart';
+import 'package:unify/model/discover/invite_to_team_model.dart';
 import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/common/nav/top_app_bar.dart';
 import 'package:unify/widgets/discover/card/player_details_hero_banner.dart';
@@ -54,8 +56,7 @@ class _PlayerDetailsPageState extends State<PlayerDetailsPage> {
                               soloWins: snapshot.data!.winsSolo,
                               wins2v2: snapshot.data!.wins2v2,
                               wins3v3: snapshot.data!.wins3v3),
-                          PlayerDetailsBioSection(
-                              bio: snapshot.data!.bio),
+                          PlayerDetailsBioSection(bio: snapshot.data!.bio),
                           PlayerDetailsBattleHistorySection(
                             wins: snapshot.data!.recentWins,
                             loses: snapshot.data!.recentLoses,
@@ -81,7 +82,10 @@ class _PlayerDetailsPageState extends State<PlayerDetailsPage> {
                 showDialog(
                     context: context,
                     useRootNavigator: false,
-                    builder: ((context) => const InviteToTeamDialog()));
+                    builder: ((context) => ChangeNotifierProvider(
+                          create: (context) => InviteToTeamModel(),
+                          child: InviteToTeamDialog(userId: widget.userId),
+                        )));
               },
               child: const Text("Invite to Team"))
         ],
