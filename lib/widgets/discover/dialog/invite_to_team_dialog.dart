@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unify/data/unify-spring/discover.dart';
 import 'package:unify/data/unify-spring/serializers/discover/user_bs_teams_serializer.dart';
+import 'package:unify/main.dart';
 import 'package:unify/model/discover/invite_to_team_model.dart';
 import 'package:unify/widgets/discover/dialog/invite_to_team_dialog_sub_widgets/invite_to_team_checkbox_tile.dart';
 
@@ -75,6 +76,9 @@ class _InviteToTeamDialogState extends State<InviteToTeamDialog> {
                           }
                         });
                         Navigator.pop(context);
+                        SnackBarService.showSnackBar(
+                            content:
+                                "User has been successfully invited to ${formValues.getMap.keys.length} teams");
                       },
                 child: const Text("Invite")))
       ],
