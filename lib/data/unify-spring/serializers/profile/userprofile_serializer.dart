@@ -1,15 +1,16 @@
-import 'package:json_annotation/json_annotation.dart';
-part 'userprofile_serializer.g.dart';
+class UserProfile {
+  final String username;
+  final String email;
+  final String country;
 
-@JsonSerializable()
-class UserProfileRequest {
-  UserProfileRequest({required this.username, required this.password});
+  UserProfile(
+      {required this.username, required this.email, required this.country});
 
-  String username;
-  String password;
-
-  factory UserProfileRequest.fromJson(Map<String, dynamic> json) =>
-      _$UserProfileRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UserProfileRequestToJson(this);
+  factory UserProfile.fromMap(Map<String, dynamic> map) {
+    return UserProfile(
+      username: map["username"],
+      email: map["email"],
+      country: map["country"],
+    );
+  }
 }
