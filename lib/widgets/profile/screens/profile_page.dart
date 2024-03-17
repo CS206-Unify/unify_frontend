@@ -24,17 +24,14 @@ class _ProfilePageState extends State<ProfilePage> {
     router.go("/login");
   }
 
-  String name = "Benjamin Gan";
-  String email = "benjamin.gan@gmail.com";
-
   List<String> countries = [
-    'Country',
+    'Any',
     'Singapore',
     'Indonesia',
     'Malaysia',
-    'Philipines'
+    'Philippines'
   ];
-  String selectedCountry = 'Country';
+  String? selectedCountry = 'Any';
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +42,12 @@ class _ProfilePageState extends State<ProfilePage> {
           children: <Widget>[
             EditProfileIcon(),
             FutureBuilder<UserProfile>(
-              future:
-                  getUserProfile(), // Assuming fetchUserProfile returns a Future<UserProfile>
+              future: getUserProfile(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CircularProgressIndicator();
                 } else if (snapshot.hasError) {
+                  print(snapshot.data);
                   return Text("Error: ${snapshot.error}");
                 } else if (snapshot.hasData) {
                   // Data is now a non-null UserProfile
@@ -70,29 +67,78 @@ class _ProfilePageState extends State<ProfilePage> {
                 }
               },
             ),
-            Text(
-              email,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall
-                  ?.apply(color: Theme.of(context).colorScheme.secondary),
+            FutureBuilder<UserProfile>(
+              future: getUserProfile(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  print(snapshot.data);
+                  return Text("Error: ${snapshot.error}");
+                } else if (snapshot.hasData) {
+                  // Data is now a non-null UserProfile
+                  return Text(
+                    snapshot.data!.email,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall
+                        ?.apply(color: Theme.of(context).colorScheme.secondary),
+                  );
+                } else {
+                  // Handle the case where there is no error, but data is still null
+                  return Text("No data available");
+                }
+              },
             ),
             Container(
               width: 300,
-              child: DropdownButton<String>(
-                isExpanded: true,
-                value: selectedCountry,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    selectedCountry = newValue!;
-                  });
+              height: 60,
+              child: FutureBuilder<UserProfile>(
+                future:
+                    getUserProfile(), // This future must return a non-nullable String
+                builder: (BuildContext context,
+                    AsyncSnapshot<UserProfile> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else if (snapshot.hasData) {
+                    return DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'Country', // Label text
+                        labelStyle: TextStyle(
+                            color: Color.fromARGB(
+                                255, 121, 121, 121)), // Label style
+                      ),
+                      value: snapshot.data!.country,
+                      icon: const Icon(Icons.arrow_drop_down,
+                          color: Colors.white), // Dropdown icon and its color
+                      iconSize: 24,
+                      dropdownColor: const Color.fromARGB(255, 53, 57,
+                          59), // Background color of the dropdown items
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16), // Style of the dropdown items
+                      onChanged: (String? newValue) async {
+                        setState(() {
+                          putCountryForUserProfile(newValue);
+                          selectedCountry = newValue;
+                        });
+                        await putCountryForUserProfile(newValue);
+                      },
+                      items: countries
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    );
+                  } else {
+                    // Handle the case where there is no data
+                    return Text('No initial country selected');
+                  }
                 },
-                items: countries.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
               ),
             ),
             Container(
@@ -282,7 +328,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 40.0),
+              padding: EdgeInsets.symmetric(vertical: 30.0),
               child: ElevatedButton.icon(
                 onPressed: () {
                   logout(context);
