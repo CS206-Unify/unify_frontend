@@ -8,12 +8,14 @@ part of 'userprofile_serializer.dart';
 
 UserProfileRequest _$UserProfileRequestFromJson(Map<String, dynamic> json) =>
     UserProfileRequest(
-      username: json['username'] as String,
-      password: json['password'] as String,
+      imageString: json['imageString'] as String,
+      country: json['country'] as String,
+      language: json['language'] as String,
     );
 
 Map<String, dynamic> _$UserProfileRequestToJson(UserProfileRequest instance) =>
     <String, dynamic>{
-      'username': instance.username,
-      'password': instance.password,
+      'imageString': instance.imageString,
+      'country': instance.country,
+      'language': instance.language,
     };

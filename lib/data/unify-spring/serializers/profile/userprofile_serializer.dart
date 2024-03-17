@@ -3,10 +3,14 @@ part 'userprofile_serializer.g.dart';
 
 @JsonSerializable()
 class UserProfileRequest {
-  UserProfileRequest({required this.username, required this.password});
+  UserProfileRequest(
+      {required this.imageString,
+      required this.country,
+      required this.language});
 
-  String username;
-  String password;
+  String imageString;
+  String country;
+  String language;
 
   factory UserProfileRequest.fromJson(Map<String, dynamic> json) =>
       _$UserProfileRequestFromJson(json);
