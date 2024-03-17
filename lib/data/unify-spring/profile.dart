@@ -1,22 +1,19 @@
 import 'dart:convert';
 
-import 'package:unify/data/unify-spring/serializers/profile/userprofile_serializer.dart';
 import 'package:http/http.dart' as http;
+import 'package:unify/model/profile/userprofile_model.dart';
 import 'package:unify/utils/local_storage/secure_storage.dart';
 
 Future<UserProfile> getUserProfile() async {
-  final url = Uri.parse('http://localhost:8080/api/profile');
-  final request = await http.get(url, headers: {
+  final url = Uri.parse('http://10.0.2.2:8080/api/profile');
+  final response = await http.get(url, headers: {
     'Authorization': 'Bearer ${await SecureStorage.getToken()}',
   });
 
-  if (request.statusCode == 200) {
-    UserProfile userProfile = json
-        .decode(request.body)
-        .map((item) => UserProfile.fromMap(item))
-        .toList();
-    return userProfile;
+  if (response.statusCode == 200) {
+    print('Response body: ${response.body}');
+    return UserProfile.fromJson(json.decode(response.body));
   } else {
-    throw Exception('Failed to create user profile');
+    throw Exception('Failed to load user profile');
   }
 }
