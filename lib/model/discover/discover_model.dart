@@ -5,7 +5,7 @@ class DiscoverModel extends ChangeNotifier {
 
   String get getGame => _game;
 
-  void setGame(String game){
+  void setGame(String game) {
     _game = game;
     notifyListeners();
   }
