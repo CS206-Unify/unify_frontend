@@ -171,7 +171,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               .withOpacity(0.9),
                         ),
                       ],
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: Color(0xFF2C292F),
                     ),
                     padding: EdgeInsets.all(10.0),
                     child: SizedBox.square(
@@ -209,7 +209,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               .withOpacity(0.9),
                         ),
                       ],
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: Color(0xFF2C292F),
                     ),
                     padding: EdgeInsets.all(10.0),
                     child: SizedBox.square(
