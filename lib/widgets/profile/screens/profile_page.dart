@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:unify/data/unify-spring/profile.dart';
+import 'package:unify/model/profile/userprofile_model.dart';
 import 'package:unify/utils/local_storage/secure_storage.dart';
 import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/profile/edit_profile_icon.dart';
@@ -42,15 +44,31 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: <Widget>[
             EditProfileIcon(),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 5.0),
-              child: Text(
-                name,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge
-                    ?.apply(color: Theme.of(context).colorScheme.primary),
-              ),
+            FutureBuilder<UserProfile>(
+              future:
+                  getUserProfile(), // Assuming fetchUserProfile returns a Future<UserProfile>
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text("Error: ${snapshot.error}");
+                } else if (snapshot.hasData) {
+                  // Data is now a non-null UserProfile
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 5.0),
+                    child: Text(
+                      snapshot.data!.username,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge
+                          ?.apply(color: Theme.of(context).colorScheme.primary),
+                    ),
+                  );
+                } else {
+                  // Handle the case where there is no error, but data is still null
+                  return Text("No data available");
+                }
+              },
             ),
             Text(
               email,
