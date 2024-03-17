@@ -7,10 +7,11 @@ class UserProfile {
       {required this.username, required this.email, required this.country});
 
   factory UserProfile.fromJson(Map<String, dynamic> map) {
+    var userMap = map['user']; // Access the nested 'user' object
     return UserProfile(
-      username: map["username"],
-      email: map["email"],
-      country: map["country"],
+      username: userMap["username"],
+      email: userMap["email"],
+      country: userMap["country"],
     );
   }
 }
