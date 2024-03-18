@@ -19,15 +19,15 @@ class TeamRequirementStatistics extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      margin: const EdgeInsets.only(top: 24),
+      margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: Wrap(
         crossAxisAlignment: WrapCrossAlignment.start,
         spacing: 8,
         direction: Axis.vertical,
         children: [
-          const CommonDetailsHeading(text: "Statistics"),
+          const CommonDetailsHeading(text: "Requirements"),
           Wrap(
-            spacing: 32,
+            spacing: 50,
             children: [
               Column(
                 children: [

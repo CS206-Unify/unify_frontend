@@ -16,12 +16,12 @@ class TeamBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 12,
+      spacing: 10,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         SizedBox(
-          width: 40,
-          height: 40,
+          width: 35,
+          height: 35,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: imageUrl == null || imageUrl!.isEmpty
@@ -32,11 +32,9 @@ class TeamBanner extends StatelessWidget {
           ),
         ),
         Container(
-          padding: EdgeInsets.all(16), // Add padding
+          padding: EdgeInsets.all(3),
           decoration: BoxDecoration(
-            color: Colors.deepPurple, // Change to your preferred color
-            borderRadius: BorderRadius.circular(8), // Rounded corners
-            // Add shadows, borders, etc.
+            borderRadius: BorderRadius.circular(8),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -45,7 +43,7 @@ class TeamBanner extends StatelessWidget {
               Text(
                 teamName,
                 style: Theme.of(context).textTheme.titleSmall!.apply(
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
               ),
               SizedBox(height: 4), // Add spacing between the text and the icon
@@ -53,14 +51,14 @@ class TeamBanner extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.group, // Choose the icon that matches your design
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    color: Theme.of(context).colorScheme.secondaryContainer,
                   ),
                   SizedBox(
                       width: 4), // Add spacing between the icon and the numbers
                   Text(
                     '$currentTeamSize/$maximumTeamSize',
                     style: Theme.of(context).textTheme.bodySmall!.apply(
-                          color: Theme.of(context).colorScheme.onPrimary,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                   ),
                 ],

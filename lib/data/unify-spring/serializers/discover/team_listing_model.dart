@@ -2,7 +2,7 @@ class TeamListing {
   final String id;
   final String? imageUrl;
   final String name;
-  final String? region;
+  final String region;
   final int trophies;
   final int wins3v3;
   final int wins2v2;
@@ -14,7 +14,7 @@ class TeamListing {
       {required this.id,
       this.imageUrl,
       required this.name,
-      this.region,
+      required this.region,
       required this.trophies,
       required this.wins3v3,
       required this.wins2v2,

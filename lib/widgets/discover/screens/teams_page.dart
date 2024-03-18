@@ -56,6 +56,7 @@ class _TeamsPageState extends State<TeamsPage> {
                               TeamCard(
                                 id: _teams[index].id,
                                 teamName: _teams[index].name,
+                                region: _teams[index].region,
                                 requiredTrophies: _teams[index].trophies,
                                 wins3v3: _teams[index].wins3v3,
                                 wins2v2: _teams[index].wins2v2,

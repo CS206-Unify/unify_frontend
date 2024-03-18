@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/common/nav/top_app_bar.dart';
-import 'package:unify/widgets/discover/dialog/request_to_join_team_dialog.dart';
+import 'package:unify/widgets/discover/dialog/request_to_join_dialog.dart';
 
 class TeamDetailsPage extends StatefulWidget {
   const TeamDetailsPage({
@@ -35,9 +35,7 @@ class _TeamDetailsPageState extends State<TeamDetailsPage> {
                   context: context,
                   useRootNavigator: false,
                   builder: (BuildContext context) {
-                    return RequestToJoinTeamDialog(
-                        teamId:
-                            widget.teamId); // make sure this returns a Widget
+                    return RequestToJoinTeamDialog(teamId: widget.teamId);
                   },
                 );
               },
