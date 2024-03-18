@@ -72,6 +72,7 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
     super.initState();
     _bioTextController = TextEditingController();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,7 +98,7 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
                     // Show an error message if the future throws an error
                     return Text('Error: ${snapshot.error}');
                   } else if (snapshot.hasData) {
-                    _controller.userRegion = snapshot.data!.region;
+                    _controller.userRegion = snapshot.data!.region ?? "";
                     return DropdownMenu(
                       label: const Text('Region'),
                       width: 350,
@@ -142,11 +143,12 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const CircularProgressIndicator();
                   } else if (snapshot.hasError) {
-                    // Show an error message if the future throws an error
+                    // Show an error message if the future throws an error4
                     return Text('Error: ${snapshot.error}');
                   } else if (snapshot.hasData) {
-                    _controller.userPersonalBio = snapshot.data!.personalBio;
-                    _bioTextController.text = snapshot.data!.personalBio;
+                    _controller.userPersonalBio = snapshot.data!.personalBio ?? "";
+                    _bioTextController.text = snapshot.data!.personalBio ?? "";
+
                     return Stack(
                       children: [
                         TextField(
