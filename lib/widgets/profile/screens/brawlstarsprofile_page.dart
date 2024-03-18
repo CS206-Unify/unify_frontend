@@ -1,8 +1,4 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:unify/data/unify-spring/bsprofileinfo.dart';
 import 'package:unify/data/unify-spring/serializers/authentication/bsprofile_serializer.dart';
 import 'package:unify/main.dart';
@@ -41,38 +37,10 @@ class BrawlStarsProfileController {
     userPersonalBio = '';
   }
 
-  // Future<void> fetchProfileData() async {
-  //   try {
-  //     // Call getBSProfile function to fetch the profile data
-
-  //     BSProfileRequest bsProfileRequest = BSProfileRequest(
-  //       region: userRegion,
-  //       personalBio: userPersonalBio,
-  //     );
-  //     final user = await getBSProfile();
-
-  //     // Extract the personal bio and region from the parsed data
-  //     String personalBio = user.bsProfile.personalBio;
-  //     String region = bsProfile.region;
-
-  //     // For example, update the UI with the fetched data
-  //     updateUserRegion(region);
-  //     updateUserPersonalBio(personalBio);
-
-  //     // Show snackbar or perform any other UI update
-  //     SnackBarService.showSnackBar(
-  //         content: 'Profile data fetched successfully');
-  //   } catch (e) {
-  //     // Handle errors, e.g., show error message
-  //     SnackBarService.showSnackBar(content: e.toString());
-  //   }
-  // }
-
   //For Saving Profile
   Future<void> saveProfile() async {
     try {
       // Call putBSProfile function to save the bio
-      // Replace the function call with your implementation
       BSProfileRequest bsProfileRequest = BSProfileRequest(
         region: userRegion,
         personalBio: userPersonalBio,
@@ -85,20 +53,16 @@ class BrawlStarsProfileController {
       updateUserRegion(userRegion);
       updateUserPersonalBio(userPersonalBio);
 
-      // Show snackbar
       // Replace SnackBarService with your implementation
       SnackBarService.showSnackBar(content: 'Changes Saved');
     } catch (e) {
       // Handle errors, e.g., show error message
-      // Replace SnackBarService with your implementation
       SnackBarService.showSnackBar(content: e.toString());
     }
   }
 }
 
 class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
-  // Create a global key that uniquely identifies the Form widget and allows validation of the form.
-
   //Intialise controller
   final BrawlStarsProfileController _controller = BrawlStarsProfileController();
   late final TextEditingController _bioTextController;
@@ -108,13 +72,6 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
     super.initState();
     _bioTextController = TextEditingController();
   }
-
-  @override
-  void dispose() {
-    _bioTextController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,32 +84,15 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            //Drop down menu for region
-            //Requires to get their region
-
-            // Center(
-            //   child: DropdownMenu(
-            //     label: const Text('Region'),
-            //     width: 350,
-            //     initialSelection: _controller.userRegion,
-            //     onSelected: (newValue) {
-            //       _controller.userRegion = newValue!;
-            //     },
-            //     dropdownMenuEntries: regionEntries,
-            //     inputDecorationTheme: const InputDecorationTheme(
-            //         filled: true, constraints: BoxConstraints.expand()),
-            //   ),
-            // ),
-
             Center(
               child: FutureBuilder(
                 future: getBSProfile(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   } else if (snapshot.hasError) {
                     // Show an error message if the future throws an error
                     return Text('Error: ${snapshot.error}');
@@ -171,13 +111,13 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
                     );
                   } else {
                     // Handle the case where there is no data
-                    return Text('No selection');
+                    return const Text('No selection');
                   }
                 },
               ),
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
 
@@ -195,12 +135,12 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
 
             //Card for Personal Bio
             Padding(
-              padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
               child: FutureBuilder(
                 future: getBSProfile(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   } else if (snapshot.hasError) {
                     // Show an error message if the future throws an error
                     return Text('Error: ${snapshot.error}');
@@ -209,29 +149,6 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
                     _bioTextController.text = snapshot.data!.personalBio;
                     return Stack(
                       children: [
-                        // TextField(
-                        //   //State management for region
-                        //   controller: TextEditingController(
-                        //       text: _controller.userPersonalBio),
-                        //   onChanged: (newValue) =>
-                        //       _controller.updateUserPersonalBio(newValue),
-                        //   decoration: InputDecoration(
-                        //     filled: true,
-                        //     labelText: 'Brawl Stars Bio',
-                        //     hintText: 'Enter Bio',
-                        //     alignLabelWithHint: true,
-                        //     floatingLabelBehavior: FloatingLabelBehavior.always,
-                        //     suffix: IconButton(
-                        //       iconSize: 28,
-                        //       alignment: Alignment.center,
-                        //       //Using controller to change state
-                        //       onPressed: () => _controller.clearUserPersonalBio(),
-                        //       icon: const Icon(Icons.highlight_off),
-                        //     ),
-                        //   ),
-                        //   maxLines: 7,
-                        // ),
-
                         TextField(
                           //State management for region
                           controller: _bioTextController,
@@ -261,7 +178,7 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
                       ],
                     );
                   } else {
-                    return Text('No selection');
+                    return const Text('No selection');
                   }
                 },
               ),
@@ -272,7 +189,7 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
                 onPressed: () {
                   _controller.saveProfile();
                 },
-                child: Text('Save Bio'),
+                child: const Text('Save Bio'),
               ),
             ),
           ],
