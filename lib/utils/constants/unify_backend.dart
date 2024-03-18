@@ -4,3 +4,4 @@ String unifyAuthenticationServiceUrl = "$unifyServerBaseUrl/auth";
 String unifyProfileServiceUrl = "$unifyServerBaseUrl/profile";
 String unifyBsStatsServiceUrl = "$unifyServerBaseUrl/bsStats";
 String unifyDiscoverServiceUrl = "$unifyServerBaseUrl/discover";
+String unifyTeamServiceUrl = "$unifyServerBaseUrl/team";

@@ -53,7 +53,7 @@ class _TopAppBarState extends State<TopAppBar> {
                 child: widget.profileImg != null
                     ? Image.network(widget.profileImg!)
                     : const Image(
-                        image: AssetImage("assets/images/logos/CODM.webp")),
+                        image: AssetImage("assets/images/avatars/BenjaminGan.png")),
               ),
             ))
       ],

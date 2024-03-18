@@ -110,7 +110,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/player_details/:id',
       builder: (BuildContext context, GoRouterState state) {
-        return const PlayerDetailsPage();
+        return PlayerDetailsPage(userId: state.pathParameters["id"] ?? "");
       },
     ),
     GoRoute(
