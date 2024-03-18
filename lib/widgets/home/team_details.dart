@@ -9,7 +9,7 @@ class TeamDetails extends StatelessWidget {
   final int numMembers;
   final List<int> teamStats;
 
-  TeamDetails({Key? key, required this.teamName, required this.region, required this.logoUrl, required this.numMembers, required this.teamStats, required String trophies}) : super(key: key);
+  TeamDetails({Key? key, required this.teamName, required this.region, required this.logoUrl, required this.numMembers, required this.teamStats}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
