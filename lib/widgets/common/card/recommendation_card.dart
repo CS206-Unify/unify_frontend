@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class RecommendationCard extends StatelessWidget {
-  
   final Widget display;
   RecommendationCard({Key? key, required this.display}) : super(key: key);
 
