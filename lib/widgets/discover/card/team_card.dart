@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:unify/router.dart';
 import 'package:unify/widgets/discover/card/team_card_sub_widgets/team_banner.dart';
-import 'package:unify/widgets/discover/card/team_card_sub_widgets/team_requirements_statistics.dart';
+import 'package:unify/widgets/discover/card/team_card_sub_widgets/team_requirement_statistics.dart';
 
 class TeamCard extends StatelessWidget {
   const TeamCard({
