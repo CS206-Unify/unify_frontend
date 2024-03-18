@@ -30,10 +30,6 @@ class _ManagePageState extends State<ManagePage> {
     if (result.statusCode == 200) {
       // Parse the response body
       final Map<String, dynamic> body = json.decode(result.body);
-      
-      // Log the parsed body
-      // print('Parsed body: $body');
-      
       return body;
     } else {
       // Handle HTTP error
@@ -104,7 +100,7 @@ class _ManagePageState extends State<ManagePage> {
                         future: userTeams,
                         builder: (context, snapshot) {
                           if (snapshot.connectionState == ConnectionState.waiting) {
-                            return CircularProgressIndicator();
+                            return const CircularProgressIndicator();
                           } else if (snapshot.hasError) {
                             return Text('${snapshot.error}');
                           } else if (snapshot.hasData) {
