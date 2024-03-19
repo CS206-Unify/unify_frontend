@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:unify/widgets/common/card/recommendation_card.dart';
 import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
@@ -5,11 +9,98 @@ import 'package:unify/widgets/common/nav/top_app_bar.dart';
 import 'package:unify/widgets/common/card/select_game_card.dart';
 import 'package:unify/widgets/home/player_details.dart';
 import 'package:unify/widgets/home/team_details.dart';
+import 'package:http/http.dart' as http;
+import 'package:unify/utils/constants/unify_backend.dart' as unify_client;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Future<Map<String, dynamic>> getUserDetails() async {
+    final result = await http.get(
+        Uri.parse(unify_client.unifyProfileServiceUrl),
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCZW5qYW1pbkdhbiIsImlhdCI6MTcxMDY5OTE0MCwiZXhwIjoxNzExMjU0MjAyfQ.NwTjNQdOIfxW_9JAKlVvQYazdnMKCwZnouAjqyHUnmA",
+          HttpHeaders.contentTypeHeader: "application/json",
+        },);
+
+    if (result.statusCode == 200) {
+      final Map<String, dynamic> body = json.decode(result.body);
+      return body;
+    } else {
+      throw Exception('Failed to load user details: ${result.statusCode}');
+    }
+  }
+  
+  Future<Map<String, dynamic>> getPlayerRecommendations() async {
+
+    final userDetails = await getUserDetails();
+
+    final region = userDetails['user']['region'] ?? "AP";
+    final language = userDetails['user']['language'] ?? "English";
+    final trophies = userDetails['user']['bsProfile']['trophies'] ?? "0";
+    final threeVThreeWins = userDetails['user']['bsProfile']['threeVsThreeVictories'] ?? "0";
+    final twoVTwoWins = userDetails['user']['bsProfile']['duoVictories'] ?? "0";
+    final soloWins = userDetails['user']['bsProfile']['soloVictories'] ?? "0";
+
+    final result = await http.get(
+        Uri.parse('${unify_client.unifyDiscoverServiceUrl}/profile?region=$region&language=$language&trophies=$trophies&threeVThreeWins=$threeVThreeWins&twoVTwoWins=$twoVTwoWins&soloWins=$soloWins&pageSize=1&pageNumber=0'),
+        // Uri.parse('${unify_client.unifyDiscoverServiceUrl}/profile?region=AP&language=English&trophies=30000&threeVThreeWins=9000&twoVTwoWins=1095&soloWins=900&pageSize=1&pageNumber=0'),
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCZW5qYW1pbkdhbiIsImlhdCI6MTcxMDY5OTE0MCwiZXhwIjoxNzExMjU0MjAyfQ.NwTjNQdOIfxW_9JAKlVvQYazdnMKCwZnouAjqyHUnmA",
+          HttpHeaders.contentTypeHeader: "application/json",
+        },);
+
+    if (result.statusCode == 200) {
+      final Map<String, dynamic> body = json.decode(result.body);
+      return body;
+    } else {
+      throw Exception('Failed to load user details: ${result.statusCode}');
+    }
+  }
+
+  Future<Map<String, dynamic>> getTeamRecommendations() async {
+
+    final userDetails = await getUserDetails();
+
+    final region = userDetails['user']['region'] ?? "AP";
+    final language = userDetails['user']['language'] ?? "English";
+    final trophies = userDetails['user']['bsProfile']['trophies'] ?? "0";
+    final threeVThreeWins = userDetails['user']['bsProfile']['threeVsThreeVictories'] ?? "0";
+    final twoVTwoWins = userDetails['user']['bsProfile']['duoVictories'] ?? "0";
+    final soloWins = userDetails['user']['bsProfile']['soloVictories'] ?? "0";
+
+    final result = await http.get(
+        Uri.parse('${unify_client.unifyDiscoverServiceUrl}/team?region=$region&language=$language&trophies=$trophies&threeVThreeWins=$threeVThreeWins&twoVTwoWins=$twoVTwoWins&soloWins=$soloWins&pageSize=3&pageNumber=0'),
+        // Uri.parse('${unify_client.unifyDiscoverServiceUrl}/team?region=EU&trophies=30000&threeVThreeWins=9000&twoVTwoWins=1095&soloWins=900&pageSize=3&pageNumber=0'),
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCZW5qYW1pbkdhbiIsImlhdCI6MTcxMDY5OTE0MCwiZXhwIjoxNzExMjU0MjAyfQ.NwTjNQdOIfxW_9JAKlVvQYazdnMKCwZnouAjqyHUnmA",
+          HttpHeaders.contentTypeHeader: "application/json",
+        },);
+
+    if (result.statusCode == 200) {
+      final Map<String, dynamic> body = json.decode(result.body);
+      return body;
+    } else {
+      throw Exception('Failed to load user details: ${result.statusCode}');
+    }
+  }
+
+  late Future<Map<String, dynamic>> playerRecommendationsFuture;
+  late Future<Map<String, dynamic>> teamRecommendationsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    playerRecommendationsFuture = getPlayerRecommendations();
+    teamRecommendationsFuture = getTeamRecommendations();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +112,7 @@ class HomePage extends StatelessWidget {
           scrollDirection: Axis.vertical,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 10.0, top: 10.0),
+              padding: const EdgeInsets.only(left: 10.0, top: 10.0),
               child: Text(
               "Unify And Play Together",
               style: Theme.of(context).textTheme.titleMedium?.apply(color: Theme.of(context).colorScheme.tertiary),
@@ -39,7 +130,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 10.0, top: 5.0, bottom: 5.0),
+              padding: const EdgeInsets.only(left: 10.0, top: 5.0, bottom: 5.0),
               child: Text(
               "Player Recommendation",
               style: Theme.of(context).textTheme.titleMedium?.apply(color: Theme.of(context).colorScheme.primary),
@@ -47,17 +138,38 @@ class HomePage extends StatelessWidget {
             )),
             Container(
               height: 170,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                children: <Widget>[
-                  RecommendationCard(display: PlayerDetails(region: 'Asia Pacific', trophies: '114,918', name: 'Benjamin Gan', avatarUrl: 'BenjaminGan.png',)),
-                  RecommendationCard(display: PlayerDetails(region: 'Asia Pacific', trophies: '239,820', name: 'XXX', avatarUrl: 'BenjaminGan.png',)),
-                ],
+              child: FutureBuilder<Map<String, dynamic>?>(
+                future: playerRecommendationsFuture,
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return const CircularProgressIndicator();
+                    case ConnectionState.done:
+                      if (snapshot.hasError) {
+                        return Text('${snapshot.error}');
+                      } else if (snapshot.hasData) {
+                        Map<String, dynamic>? data = snapshot.data;
+                        
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: data?['bsProfileListingList'].length,
+                          itemBuilder: (context, index) {
+                            Map<String, dynamic> player = data?['bsProfileListingList'][index];
+                            return RecommendationCard(route: '/player_details/:${player['_id']}', display: PlayerDetails(region: player['region'], trophies: player['trophies'].toString(), name: player['username'], avatarUrl: 'BenjaminGan.png',));
+                          },
+                        );
+                      } else {
+                        return const Text('No teams to display :(');
+                      }
+                    default:
+                      return const Text('Unexpected Error');
+                  }
+                },
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 10.0, top: 5.0, bottom: 5.0),
+              padding: const EdgeInsets.only(left: 10.0, top: 5.0, bottom: 5.0),
               child: Text(
               "Team Recommendation",
               style: Theme.of(context).textTheme.titleMedium?.apply(color: Theme.of(context).colorScheme.secondary),
@@ -65,13 +177,39 @@ class HomePage extends StatelessWidget {
             )),
             Container(
               height: 190,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                children: <Widget>[
-                  RecommendationCard(display: TeamDetails(teamName: 'Team Ninja', region: 'Asia Pacific', logoUrl: 'Unify.png', numMembers: 5, teamStats: [80,15,200,200],)),
-                  RecommendationCard(display: TeamDetails(teamName: 'Team Hornets', region: 'Asia Pacific', logoUrl: 'CODM.webp', numMembers: 8, teamStats: [40,20,180,90],)),
-                ],
+              child: FutureBuilder<Map<String, dynamic>?>(
+                future: teamRecommendationsFuture,
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return const CircularProgressIndicator();
+                    case ConnectionState.done:
+                      if (snapshot.hasError) {
+                        return Text('${snapshot.error}');
+                      } else if (snapshot.hasData) {
+                        Map<String, dynamic>? data = snapshot.data;
+                        // print(data);
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: data?['bsTeamListings'].length,
+                          itemBuilder: (context, index) {
+                            Map<String, dynamic> team = data?['bsTeamListings'][index];
+                            final String region = team['region'] ?? "Any";
+                            final String teamTrophies = team['trophies'] ?? "0";
+                            final String team3v3Wins = team['threeVThreeWins'] ?? "0";
+                            final String team2v2Wins = team['twoVTwoWinds'] ?? "0";
+                            final String teamSoloWins = team['soloWins'] ?? "0";
+                            return RecommendationCard(route: '/team_details/:${team['_id']}', display: TeamDetails(id: team['_id'], region: region, teamStats: [int.parse(teamTrophies), int.parse(team3v3Wins), int.parse(team2v2Wins), int.parse(teamSoloWins)]));
+                          },
+                        );
+                      } else {
+                        return const Text('No teams to display :(');
+                      }
+                    default:
+                      return const Text('Unexpected Error');
+                  }
+                },
               ),
             )
           ],
