@@ -20,6 +20,38 @@ class TeamDetailsPage extends StatefulWidget {
 }
 
 class _TeamDetailsPageState extends State<TeamDetailsPage> {
+  late Color buttonColor; // Declare buttonColor as a state variable
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        setState(() {
+          buttonColor = Theme.of(context).colorScheme.primary;
+        });
+      }
+    });
+  }
+
+  void changeButtonColor() {
+    setState(() {
+      buttonColor = Colors.black26; // New color after the request is sent
+    });
+  }
+
+  void showRequestDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // Passing changeButtonColor callback to the dialog
+        return RequestToJoinTeamDialog(
+            teamId: 'teamId', onRequested: changeButtonColor);
+      },
+    );
+  }
+
   String formatDate(DateTime dateTime) {
     final DateFormat formatter = DateFormat('MMMM dd, yyyy');
     return formatter.format(dateTime);
@@ -128,16 +160,19 @@ class _TeamDetailsPageState extends State<TeamDetailsPage> {
         spacing: 12,
         children: [
           FilledButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(buttonColor)),
               onPressed: () {
                 showDialog(
                   context: context,
                   useRootNavigator: false,
                   builder: (BuildContext context) {
-                    return RequestToJoinTeamDialog(teamId: widget.teamId);
+                    return RequestToJoinTeamDialog(
+                        teamId: widget.teamId, onRequested: changeButtonColor);
                   },
                 );
               },
-              child: const Text("Request to Join"))
+              child: const Text("Request to Join")),
         ],
       ),
       bottomNavigationBar: const BottomNavBar(
