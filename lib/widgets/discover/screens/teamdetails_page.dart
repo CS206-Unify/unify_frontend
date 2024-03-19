@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:unify/data/unify-spring/discover.dart';
+import 'package:unify/data/unify-spring/serializers/discover/team_member_model.dart';
 import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/common/nav/top_app_bar.dart';
 import 'package:unify/widgets/discover/dialog/request_to_join_dialog.dart';
@@ -109,7 +110,17 @@ class _TeamDetailsPageState extends State<TeamDetailsPage> {
                   );
                 }
               }),
-          TeamBioScreen(),
+          FutureBuilder(
+              future: getTeamDetailsById(widget.teamId),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Text("Error: ${snapshot.error}");
+                } else {
+                  return TeamBioScreen(memberList: snapshot.data!.memberList);
+                }
+              }),
         ],
       )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

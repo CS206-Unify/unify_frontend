@@ -1,10 +1,19 @@
 import 'package:unify/data/unify-spring/serializers/discover/team_member_details_model.dart';
 import 'package:flutter/material.dart';
+import 'package:unify/data/unify-spring/serializers/discover/team_member_model.dart';
 
-class MemberItem extends StatelessWidget {
+class MemberItem extends StatefulWidget {
+  MemberItem({Key? key, required this.member}) : super(key: key);
+
   final TeamMemberDetails member;
 
-  const MemberItem({Key? key, required this.member}) : super(key: key);
+  @override
+  _MemberItemState createState() => _MemberItemState();
+}
+
+class _MemberItemState extends State<MemberItem> {
+  final TeamMemberDetails member = TeamMemberDetails(
+      name: 'Benjamin Gan', trophies: 114918, imageUrl: 'path/to/avatar1.png');
 
   @override
   Widget build(BuildContext context) {

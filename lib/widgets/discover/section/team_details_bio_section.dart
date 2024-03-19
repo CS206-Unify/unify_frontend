@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:unify/data/unify-spring/serializers/discover/team_member_details_model.dart';
+import 'package:unify/data/unify-spring/serializers/discover/team_member_model.dart';
 import 'package:unify/widgets/discover/item/member_row_item.dart';
+import 'package:unify/data/unify-spring/discover.dart';
 
-class TeamBioScreen extends StatelessWidget {
-  final List<TeamMemberDetails> members = [
-    TeamMemberDetails(
-        name: 'Benjamin Gan',
-        trophies: 114918,
-        imageUrl: 'path/to/avatar1.png'),
-    TeamMemberDetails(
-        name: 'Dexter', trophies: 15789, imageUrl: 'path/to/avatar2.png'),
-  ];
+class TeamBioScreen extends StatefulWidget {
+  TeamBioScreen({
+    super.key,
+    required this.memberList,
+  });
 
+  final List<TeamMember> memberList;
+
+  @override
+  State<TeamBioScreen> createState() => _TeamBioScreenState();
+}
+
+class _TeamBioScreenState extends State<TeamBioScreen> {
+  // final List<TeamMemberDetails> members = [
+  //   TeamMemberDetails(
+  //       name: 'Benjamin Gan',
+  //       trophies: 114918,
+  //       imageUrl: 'path/to/avatar1.png'),
+  //   TeamMemberDetails(
+  //       name: 'Dexter', trophies: 15789, imageUrl: 'path/to/avatar2.png'),
+  // ];
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -56,9 +69,23 @@ class TeamBioScreen extends StatelessWidget {
             physics:
                 NeverScrollableScrollPhysics(), // to disable ListView's scrolling
             shrinkWrap: true, // Use children's total height
-            itemCount: members.length,
+            itemCount: widget.memberList.length,
             itemBuilder: (context, index) {
-              return MemberItem(member: members[index]);
+              return FutureBuilder(
+                  future: getTeamMemberDetailsById(widget.memberList[index].id),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError) {
+                      return Text("Error: ${snapshot.error}");
+                    } else {
+                      return MemberItem(
+                          member: TeamMemberDetails(
+                              name: snapshot.data!.name,
+                              trophies: snapshot.data!.trophies,
+                              imageUrl: snapshot.data!.imageUrl));
+                    }
+                  });
             },
           ),
         ],
