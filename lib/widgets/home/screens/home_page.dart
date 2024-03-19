@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:unify/utils/local_storage/secure_storage.dart';
 import 'package:unify/widgets/common/card/recommendation_card.dart';
 import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/common/nav/top_app_bar.dart';
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     final result = await http.get(
         Uri.parse(unify_client.unifyProfileServiceUrl),
         headers: {
-          HttpHeaders.authorizationHeader: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCZW5qYW1pbkdhbiIsImlhdCI6MTcxMDY5OTE0MCwiZXhwIjoxNzExMjU0MjAyfQ.NwTjNQdOIfxW_9JAKlVvQYazdnMKCwZnouAjqyHUnmA",
+          HttpHeaders.authorizationHeader: "Bearer ${await SecureStorage.getToken()}",
           HttpHeaders.contentTypeHeader: "application/json",
         },);
 
@@ -53,7 +54,7 @@ class _HomePageState extends State<HomePage> {
         Uri.parse('${unify_client.unifyDiscoverServiceUrl}/profile?region=$region&language=$language&trophies=$trophies&threeVThreeWins=$threeVThreeWins&twoVTwoWins=$twoVTwoWins&soloWins=$soloWins&pageSize=1&pageNumber=0'),
         // Uri.parse('${unify_client.unifyDiscoverServiceUrl}/profile?region=AP&language=English&trophies=30000&threeVThreeWins=9000&twoVTwoWins=1095&soloWins=900&pageSize=1&pageNumber=0'),
         headers: {
-          HttpHeaders.authorizationHeader: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCZW5qYW1pbkdhbiIsImlhdCI6MTcxMDY5OTE0MCwiZXhwIjoxNzExMjU0MjAyfQ.NwTjNQdOIfxW_9JAKlVvQYazdnMKCwZnouAjqyHUnmA",
+          HttpHeaders.authorizationHeader: "Bearer ${await SecureStorage.getToken()}",
           HttpHeaders.contentTypeHeader: "application/json",
         },);
 
@@ -80,7 +81,7 @@ class _HomePageState extends State<HomePage> {
         Uri.parse('${unify_client.unifyDiscoverServiceUrl}/team?region=$region&language=$language&trophies=$trophies&threeVThreeWins=$threeVThreeWins&twoVTwoWins=$twoVTwoWins&soloWins=$soloWins&pageSize=3&pageNumber=0'),
         // Uri.parse('${unify_client.unifyDiscoverServiceUrl}/team?region=EU&trophies=30000&threeVThreeWins=9000&twoVTwoWins=1095&soloWins=900&pageSize=3&pageNumber=0'),
         headers: {
-          HttpHeaders.authorizationHeader: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCZW5qYW1pbkdhbiIsImlhdCI6MTcxMDY5OTE0MCwiZXhwIjoxNzExMjU0MjAyfQ.NwTjNQdOIfxW_9JAKlVvQYazdnMKCwZnouAjqyHUnmA",
+          HttpHeaders.authorizationHeader: "Bearer ${await SecureStorage.getToken()}",
           HttpHeaders.contentTypeHeader: "application/json",
         },);
 

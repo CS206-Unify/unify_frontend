@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:unify/utils/local_storage/secure_storage.dart';
 import 'package:unify/widgets/home/team_stats.dart';
 import 'package:http/http.dart' as http;
 import 'package:unify/utils/constants/unify_backend.dart' as unify_client;
@@ -33,7 +34,7 @@ class _TeamDetailsState extends State<TeamDetails> {
     final result = await http.get(
         Uri.parse('${unify_client.unifyTeamServiceUrl}/$id'),
         headers: {
-          HttpHeaders.authorizationHeader: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCZW5qYW1pbkdhbiIsImlhdCI6MTcxMDY5OTE0MCwiZXhwIjoxNzExMjU0MjAyfQ.NwTjNQdOIfxW_9JAKlVvQYazdnMKCwZnouAjqyHUnmA",
+          HttpHeaders.authorizationHeader: "Bearer ${await SecureStorage.getToken()}",
           HttpHeaders.contentTypeHeader: "application/json",
         },);
 
