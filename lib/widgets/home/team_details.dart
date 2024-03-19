@@ -7,12 +7,12 @@ import 'package:unify/widgets/home/team_stats.dart';
 import 'package:http/http.dart' as http;
 import 'package:unify/utils/constants/unify_backend.dart' as unify_client;
 
+
 class TeamDetails extends StatefulWidget {
 
   final String id;
   final String region;
   final List<int> teamStats;
-
 
   TeamDetails({Key? key,required this.id, required this.region, required this.teamStats}) : super(key: key);
 

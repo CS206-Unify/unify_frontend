@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class RecommendationCard extends StatelessWidget {
-  
   final Widget display;
   final String route;
 
