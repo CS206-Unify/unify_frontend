@@ -9,17 +9,40 @@ class MemberItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CircleAvatar(
-        backgroundImage:
-            AssetImage(member.imageUrl), // Replace with your actual logo asset
+      leading: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+              12), // Adjust the radius here to match your design
+          image: DecorationImage(
+            image: AssetImage(
+                "assets/images/avatars/BenjaminGan.png"), // Replace with your actual image path
+            fit: BoxFit.cover,
+          ),
+        ),
+        width: 40, // Set your desired width
+        height: 40, // Set your desired height
       ),
-      title: Text(member.name),
+      title: Text(
+        member.name,
+        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+              color: Color.fromARGB(255, 241, 238, 238),
+              fontSize: 16.0,
+            ),
+      ),
       trailing: Row(
         mainAxisSize:
             MainAxisSize.min, // makes the Row only as wide as its children
         children: [
-          Text('${member.trophies}'),
-          Icon(Icons.emoji_events, color: Colors.orange),
+          Text(
+            '${member.trophies}',
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontSize: 13.0,
+                ),
+          ),
+          SizedBox(width: 8),
+          Image.asset("assets/images/brawlstars/misc/Trophy.png",
+              height: 25.0, width: 25.0),
         ],
       ),
     );

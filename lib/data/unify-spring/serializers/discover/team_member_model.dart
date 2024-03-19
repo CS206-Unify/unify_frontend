@@ -7,7 +7,7 @@ class TeamMember {
 
   factory TeamMember.fromMap(Map<String, dynamic> map) {
     return TeamMember(
-      id: map["_id"],
+      id: map["userId"],
     );
   }
 }

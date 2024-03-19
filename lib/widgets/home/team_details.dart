@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:unify/widgets/home/team_stats.dart';
 
 class TeamDetails extends StatelessWidget {
-
   final String teamName;
   final String region;
   final String logoUrl;
   final int numMembers;
   final List<int> teamStats;
 
-  TeamDetails({Key? key, required this.teamName, required this.region, required this.logoUrl, required this.numMembers, required this.teamStats}) : super(key: key);
+  TeamDetails(
+      {Key? key,
+      required this.teamName,
+      required this.region,
+      required this.logoUrl,
+      required this.numMembers,
+      required this.teamStats})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,8 @@ class TeamDetails extends StatelessWidget {
         Row(
           children: <Widget>[
             Text(
-              style: Theme.of(context).textTheme.titleSmall?.apply(color: Theme.of(context).colorScheme.onSecondaryContainer),
+              style: Theme.of(context).textTheme.titleSmall?.apply(
+                  color: Theme.of(context).colorScheme.onSecondaryContainer),
               '$teamName',
             ),
             Text(
@@ -51,7 +58,10 @@ class TeamDetails extends StatelessWidget {
                   weight: 0.5,
                 ),
                 Text(
-                  style: Theme.of(context).textTheme.bodySmall?.apply(color: Theme.of(context).colorScheme.secondary),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.apply(color: Theme.of(context).colorScheme.secondary),
                   '$numMembers/10',
                 ),
               ],
@@ -62,13 +72,18 @@ class TeamDetails extends StatelessWidget {
           height: 4.0,
         ),
         Text(
-          style: Theme.of(context).textTheme.labelSmall?.apply(color: Theme.of(context).colorScheme.onSecondaryContainer),
+          style: Theme.of(context).textTheme.labelSmall?.apply(
+              color: Theme.of(context).colorScheme.onSecondaryContainer),
           "Recruiting",
         ), //"Recruiting"
         SizedBox(
           height: 4.0,
         ),
-        TeamStats(trophies: teamStats.elementAt(0), wins3v3: teamStats.elementAt(1), duoWins: teamStats.elementAt(2), soloWins: teamStats.elementAt(3)),
+        TeamStats(
+            trophies: teamStats.elementAt(0),
+            wins3v3: teamStats.elementAt(1),
+            duoWins: teamStats.elementAt(2),
+            soloWins: teamStats.elementAt(3)),
       ],
     );
   }

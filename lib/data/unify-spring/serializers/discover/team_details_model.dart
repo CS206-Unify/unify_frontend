@@ -24,7 +24,7 @@ class TeamDetails {
         region: map["region"],
         teamCreationDate: DateTime.parse(map["teamCreationDate"]),
         memberList: (map["memberList"] as List)
-            .map((item) => TeamMember.fromMap(item))
+            .map((item) => TeamMember.fromMap(item as Map<String, dynamic>))
             .toList());
   }
 }

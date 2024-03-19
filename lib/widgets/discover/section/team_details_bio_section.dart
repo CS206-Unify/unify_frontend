@@ -10,7 +10,6 @@ class TeamBioScreen extends StatelessWidget {
         imageUrl: 'path/to/avatar1.png'),
     TeamMemberDetails(
         name: 'Dexter', trophies: 15789, imageUrl: 'path/to/avatar2.png'),
-    // ... other members
   ];
 
   @override
@@ -20,17 +19,37 @@ class TeamBioScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Newly formed team looking to grow and compete. Looking for scrims to prepare for premier and tournaments!',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Team Bio',
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontSize: 16.0,
+                          ),
+                    ),
+                    Container(
+                      margin: EdgeInsetsDirectional.only(top: 6),
+                      child: Text(
+                        'Newly formed team looking to grow and compete. Looking for scrims to prepare for premier and tournaments!',
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                              color: Color.fromARGB(255, 241, 238, 238),
+                              fontSize: 13.0,
+                            ),
+                      ),
+                    )
+                  ])),
+          Container(
             padding: const EdgeInsets.all(16.0),
             child: Text(
               'Members',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 16.0,
+                  ),
             ),
           ),
           ListView.builder(

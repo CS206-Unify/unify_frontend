@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:unify/data/unify-spring/serializers/discover/profile_details_serializer.dart';
 import 'package:unify/data/unify-spring/serializers/discover/profile_listing_serializer.dart';
 import 'package:http/http.dart' as http;
+import 'package:unify/data/unify-spring/serializers/discover/team_details_model.dart';
 import 'package:unify/data/unify-spring/serializers/discover/team_listing_model.dart';
+import 'package:unify/data/unify-spring/serializers/discover/team_member_model.dart';
 import 'package:unify/data/unify-spring/serializers/discover/user_bs_teams_serializer.dart';
 import 'package:unify/data/unify-spring/serializers/error/common_error_serializer.dart';
 import 'package:unify/main.dart';
@@ -127,6 +129,24 @@ Future<List<TeamListing>> discoverTeam(String region, int trophies, int wins3v3,
             .toList();
 
     return teams;
+  } catch (e) {
+    SnackBarService.showSnackBar(content: e.toString());
+    rethrow;
+  }
+}
+
+Future<TeamDetails> getTeamDetailsById(String teamId) async {
+  try {
+    final res = await http
+        .get(Uri.parse("http://10.0.2.2:8080/api/team/$teamId"), headers: {
+      HttpHeaders.authorizationHeader:
+          "Bearer ${await SecureStorage.getToken()}"
+    });
+
+    print(json.decode(res.body)["bsTeam"]);
+
+    return TeamDetails.fromMap(
+        json.decode(res.body)["bsTeam"] as Map<String, dynamic>);
   } catch (e) {
     SnackBarService.showSnackBar(content: e.toString());
     rethrow;
