@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unify/utils/constants/filter_dropdown_choices.dart';
+import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/common/nav/top_app_bar.dart';
 
 class EditTeamPage extends StatefulWidget {
@@ -219,6 +220,8 @@ class _EditTeamPageState extends State<EditTeamPage> {
             ),
         ],
       ),
+      bottomNavigationBar: const BottomNavBar(current: "brawl_stars_profile"),
+
     );
   }
 }
