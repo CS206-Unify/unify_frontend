@@ -1,0 +1,11 @@
+// This is a generated file; do not edit or check into version control.
+FLUTTER_ROOT=C:\Users\favia\Flutter\flutter
+FLUTTER_APPLICATION_PATH=C:\Users\favia\Desktop\SMU\Year 2 Sem 2\2. Monday CS206 Software Product Management G2 3.15pm\app\unify_frontend
+COCOAPODS_PARALLEL_CODE_SIGN=true
+FLUTTER_BUILD_DIR=build
+FLUTTER_BUILD_NAME=1.0.0
+FLUTTER_BUILD_NUMBER=1
+DART_OBFUSCATION=false
+TRACK_WIDGET_CREATION=true
+TREE_SHAKE_ICONS=false
+PACKAGE_CONFIG=.dart_tool/package_config.json
