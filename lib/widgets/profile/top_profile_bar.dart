@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-class TopAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const TopAppBar({super.key, this.title, this.game, this.profileImg});
+class TopProfileBar extends StatefulWidget implements PreferredSizeWidget {
+  const TopProfileBar({super.key, this.title, this.game, this.profileImg});
   final String? title;
   final String? game;
   final String? profileImg;
 
   @override
-  State<TopAppBar> createState() => _TopAppBarState();
+  State<TopProfileBar> createState() => _TopAppBarState();
 
   @override
   Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
 }
 
-class _TopAppBarState extends State<TopAppBar> {
+class _TopAppBarState extends State<TopProfileBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.surface,
       title: Text(
-        widget.title ?? "Unify",
+        widget.title ?? "Profile",
         style: TextStyle(
           color: Theme.of(context).colorScheme.primary,
         ),
@@ -44,18 +43,16 @@ class _TopAppBarState extends State<TopAppBar> {
                               : "assets/images/logos/Unify.png")))),
       actions: [
         InkWell(
-            onTap: () => context.go('/profile'),
             child: Container(
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: widget.profileImg != null
-                    ? Image.network(widget.profileImg!)
-                    : const Image(
-                        image: AssetImage("assets/images/avatars/BenjaminGan.png")),
-              ),
-            ))
+          margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: widget.profileImg != null
+                ? Image.network(widget.profileImg!)
+                : const Image(
+                    image: AssetImage("assets/images/logos/CODM.webp")),
+          ),
+        ))
       ],
     );
   }
