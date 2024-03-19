@@ -104,7 +104,7 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
                       width: 350,
                       initialSelection: snapshot.data!.region,
                       onSelected: (newValue) {
-                        _controller.userRegion = newValue!;
+                        _controller.userRegion = regionEntries[newValue]! as String;
                       },
                       dropdownMenuEntries: regionEntries,
                       inputDecorationTheme: const InputDecorationTheme(
@@ -189,7 +189,11 @@ class _BrawlStarsProfilePageState extends State<BrawlStarsProfilePage> {
             Center(
               child: FilledButton(
                 onPressed: () {
-                  _controller.saveProfile();
+                  if (_controller.userPersonalBio=='') {
+                    SnackBarService.showSnackBar(content: 'Bio is required');
+                  } else {
+                    _controller.saveProfile();
+                  }
                 },
                 child: const Text('Save Bio'),
               ),
