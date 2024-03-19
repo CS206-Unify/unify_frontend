@@ -15,7 +15,7 @@ void createTeam(CreateTeamRequest createTeamRequest) async {
     final result = await http.get(
         Uri.parse(unify_client.unifyProfileServiceUrl),
         headers: {
-          HttpHeaders.authorizationHeader: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCZW5qYW1pbkdhbiIsImlhdCI6MTcxMDY5OTE0MCwiZXhwIjoxNzExMjU0MjAyfQ.NwTjNQdOIfxW_9JAKlVvQYazdnMKCwZnouAjqyHUnmA",
+          HttpHeaders.authorizationHeader: "Bearer ${await SecureStorage.getToken()}",
           HttpHeaders.contentTypeHeader: "application/json",
         },);
 

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:unify/utils/local_storage/secure_storage.dart';
 import 'package:unify/widgets/common/card/team_manage_card.dart';
 import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/common/nav/top_app_bar.dart';
@@ -23,7 +24,7 @@ class _ManagePageState extends State<ManagePage> {
     final result = await http.get(
         Uri.parse(unify_client.unifyProfileServiceUrl),
         headers: {
-          HttpHeaders.authorizationHeader: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCZW5qYW1pbkdhbiIsImlhdCI6MTcxMDY5OTE0MCwiZXhwIjoxNzExMjU0MjAyfQ.NwTjNQdOIfxW_9JAKlVvQYazdnMKCwZnouAjqyHUnmA",
+          HttpHeaders.authorizationHeader: "Bearer ${await SecureStorage.getToken()}",
           HttpHeaders.contentTypeHeader: "application/json",
         },);
 
@@ -44,7 +45,7 @@ class _ManagePageState extends State<ManagePage> {
     final teamResponse = await http.get(
       Uri.parse('${unify_client.unifyServerBaseUrl}/team/$teamId'), // Replace with your actual API endpoint
       headers: {
-        HttpHeaders.authorizationHeader: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCZW5qYW1pbkdhbiIsImlhdCI6MTcxMDY5OTE0MCwiZXhwIjoxNzExMjU0MjAyfQ.NwTjNQdOIfxW_9JAKlVvQYazdnMKCwZnouAjqyHUnmA",
+        HttpHeaders.authorizationHeader: "Bearer ${await SecureStorage.getToken()}",
         HttpHeaders.contentTypeHeader: "application/json",
       },
     );
@@ -114,7 +115,6 @@ class _ManagePageState extends State<ManagePage> {
                                 String teamId = team['_id'];
                                 String teamName = team['teamName'];
                                 String region = team['region'];
-                                String language = team['language'];
                                 String imageString = team['imageString'] ?? "";
                                 int maxTeamSize = team['maximumTeamSize'];
                                 int memberListSize = team['memberList'].length;
@@ -123,7 +123,6 @@ class _ManagePageState extends State<ManagePage> {
                                   teamName: teamName,
                                   gameName: "Brawl Stars",
                                   region: region,
-                                  language: language,
                                   imageString: imageString,
                                   maxTeamSize: maxTeamSize,
                                   memberListSize: memberListSize,
