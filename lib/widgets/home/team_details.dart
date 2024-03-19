@@ -12,6 +12,7 @@ class TeamDetails extends StatefulWidget {
   final String region;
   final List<int> teamStats;
 
+
   TeamDetails({Key? key,required this.id, required this.region, required this.teamStats}) : super(key: key);
 
   @override
