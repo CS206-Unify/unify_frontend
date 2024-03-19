@@ -19,9 +19,7 @@ class TeamManageCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: GestureDetector(
-        onTap: () => {context.go("/edit_team/:$teamId")}, 
-        child: SizedBox(
+      child: SizedBox(
           width: 360,
           height: 104,
           child: Stack(
@@ -92,7 +90,6 @@ class TeamManageCard extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

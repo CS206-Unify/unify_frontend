@@ -118,14 +118,17 @@ class _ManagePageState extends State<ManagePage> {
                                 String imageString = team['imageString'] ?? "";
                                 int maxTeamSize = team['maximumTeamSize'];
                                 int memberListSize = team['memberList'].length;
-                                return TeamManageCard(
-                                  teamId: teamId,
-                                  teamName: teamName,
-                                  gameName: "Brawl Stars",
-                                  region: region,
-                                  imageString: imageString,
-                                  maxTeamSize: maxTeamSize,
-                                  memberListSize: memberListSize,
+                                return GestureDetector(
+                                  onTap: () => {context.go("/edit_team/:$teamId")}, 
+                                  child: TeamManageCard(
+                                    teamId: teamId,
+                                    teamName: teamName,
+                                    gameName: "Brawl Stars",
+                                    region: region,
+                                    imageString: imageString,
+                                    maxTeamSize: maxTeamSize,
+                                    memberListSize: memberListSize,
+                                  ),
                                 );
                               },
                             );
