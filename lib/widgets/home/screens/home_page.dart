@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
     final soloWins = userDetails['user']['bsProfile']['soloVictories'] ?? "0";
 
     final result = await http.get(
-        Uri.parse('${unify_client.unifyDiscoverServiceUrl}/profile?region=$region&language=$language&trophies=$trophies&threeVThreeWins=$threeVThreeWins&twoVTwoWins=$twoVTwoWins&soloWins=$soloWins&pageSize=1&pageNumber=0'),
+        Uri.parse('${unify_client.unifyDiscoverServiceUrl}/home/profile?region=$region&language=$language&trophies=$trophies&threeVThreeWins=$threeVThreeWins&twoVTwoWins=$twoVTwoWins&soloWins=$soloWins&pageSize=1&pageNumber=0'),
         // Uri.parse('${unify_client.unifyDiscoverServiceUrl}/profile?region=AP&language=English&trophies=30000&threeVThreeWins=9000&twoVTwoWins=1095&soloWins=900&pageSize=1&pageNumber=0'),
         headers: {
           HttpHeaders.authorizationHeader: "Bearer ${await SecureStorage.getToken()}",
@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
     final soloWins = userDetails['user']['bsProfile']['soloVictories'] ?? "0";
 
     final result = await http.get(
-        Uri.parse('${unify_client.unifyDiscoverServiceUrl}/team?region=$region&language=$language&trophies=$trophies&threeVThreeWins=$threeVThreeWins&twoVTwoWins=$twoVTwoWins&soloWins=$soloWins&pageSize=3&pageNumber=0'),
+        Uri.parse('${unify_client.unifyDiscoverServiceUrl}/home/team?region=$region&language=$language&trophies=$trophies&threeVThreeWins=$threeVThreeWins&twoVTwoWins=$twoVTwoWins&soloWins=$soloWins&pageSize=3&pageNumber=0'),
         // Uri.parse('${unify_client.unifyDiscoverServiceUrl}/team?region=EU&trophies=30000&threeVThreeWins=9000&twoVTwoWins=1095&soloWins=900&pageSize=3&pageNumber=0'),
         headers: {
           HttpHeaders.authorizationHeader: "Bearer ${await SecureStorage.getToken()}",
