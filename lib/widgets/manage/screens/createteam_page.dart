@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:unify/data/unify-spring/create_team.dart';
 import 'package:unify/data/unify-spring/serializers/manage/create_team_serializer.dart';
@@ -16,6 +17,75 @@ class CreateTeamPage extends StatefulWidget {
 
   @override
   State<CreateTeamPage> createState() => _CreateTeamPageState();
+}
+
+class AvatarChanger extends StatefulWidget {
+  @override
+  _AvatarChangerState createState() => _AvatarChangerState();
+}
+
+class _AvatarChangerState extends State<AvatarChanger> {
+  File? _imageFile;
+  final picker = ImagePicker();
+
+  Future<void> _pickImage(ImageSource source) async {
+    final pickedFile = await picker.pickImage(source: source);
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("Change Image"),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.photo_library),
+                    title: Text("Select from Gallery"),
+                    onTap: () {
+                      Navigator.pop(context);
+                      _pickImage(ImageSource.gallery);
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.camera_alt),
+                    title: Text("Take a Photo"),
+                    onTap: () {
+                      Navigator.pop(context);
+                      _pickImage(ImageSource.camera);
+                    },
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+      child: _imageFile != null ? CircleAvatar(
+        radius: 70.0,
+        backgroundColor: Theme.of(context).colorScheme.onSecondary,
+        backgroundImage: FileImage(_imageFile!)
+      ) : CircleAvatar(
+                radius: 70.0,
+                backgroundColor: Theme.of(context).colorScheme.onSecondary,
+                child: Icon(
+                  const IconData(0xe130, fontFamily: 'MaterialIcons'),
+                  color: Theme.of(context).colorScheme.secondary,
+                  size: 40.0,
+                ),
+              ),
+    );
+  }
 }
 
 class _CreateTeamPageState extends State<CreateTeamPage> {
@@ -33,15 +103,7 @@ class _CreateTeamPageState extends State<CreateTeamPage> {
           Stack(
             alignment: AlignmentDirectional.topCenter,
             children: <Widget>[
-              CircleAvatar(
-                radius: 70.0,
-                backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                child: Icon(
-                  const IconData(0xe130, fontFamily: 'MaterialIcons'),
-                  color: Theme.of(context).colorScheme.secondary,
-                  size: 40.0,
-                ),
-              ),
+              AvatarChanger(),
               Positioned(
                 bottom: 10,
                 right: 130,
