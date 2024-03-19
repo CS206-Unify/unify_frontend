@@ -7,12 +7,11 @@ class TeamManageCard extends StatelessWidget {
   final String teamName;
   final String gameName;
   final String region;
-  final String language;
   final String imageString;
   final int maxTeamSize;
   final int memberListSize;
 
-  const TeamManageCard({super.key, required this.teamId, required this.teamName, required this.gameName, required this.region, required this.language, required this.imageString, required this.maxTeamSize, required this.memberListSize});
+  const TeamManageCard({super.key, required this.teamId, required this.teamName, required this.gameName, required this.region, required this.imageString, required this.maxTeamSize, required this.memberListSize});
 
   @override
   Widget build(BuildContext context) {
