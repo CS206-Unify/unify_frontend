@@ -190,20 +190,26 @@ class _HomePageState extends State<HomePage> {
                       } else if (snapshot.hasData) {
                         Map<String, dynamic>? data = snapshot.data;
                         // print(data);
-                        return ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: data?['bsTeamListings'].length,
-                          itemBuilder: (context, index) {
-                            Map<String, dynamic> team = data?['bsTeamListings'][index];
-                            final String region = team['region'] ?? "Any";
-                            final String teamTrophies = team['trophies'] ?? "0";
-                            final String team3v3Wins = team['threeVThreeWins'] ?? "0";
-                            final String team2v2Wins = team['twoVTwoWinds'] ?? "0";
-                            final String teamSoloWins = team['soloWins'] ?? "0";
-                            return RecommendationCard(route: '/team_details/:${team['_id']}', display: TeamDetails(id: team['_id'], region: region, teamStats: [int.parse(teamTrophies), int.parse(team3v3Wins), int.parse(team2v2Wins), int.parse(teamSoloWins)]));
-                          },
-                        );
+                        if (data?['bsTeamListings'].length != 0) {
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: data?['bsTeamListings'].length,
+                            itemBuilder: (context, index) {
+                              Map<String, dynamic> team = data?['bsTeamListings'][index];
+                              final String region = team['region'] ?? "Any";
+                              final String teamTrophies = team['trophies'] ?? "0";
+                              final String team3v3Wins = team['threeVThreeWins'] ?? "0";
+                              final String team2v2Wins = team['twoVTwoWinds'] ?? "0";
+                              final String teamSoloWins = team['soloWins'] ?? "0";
+                              return RecommendationCard(route: '/team_details/:${team['_id']}', display: TeamDetails(id: team['_id'], region: region, teamStats: [int.parse(teamTrophies), int.parse(team3v3Wins), int.parse(team2v2Wins), int.parse(teamSoloWins)]));
+                            },
+                          );
+                        } else {
+                          return const Text(
+                            'No teams to display :('
+                          );
+                        }
                       } else {
                         return const Text('No teams to display :(');
                       }
