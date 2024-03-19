@@ -5,8 +5,8 @@ part 'bsprofile_serializer.g.dart';
 class BSProfileRequest {
   BSProfileRequest ({required this.region, required this.personalBio});
 
-  String region;
-  String personalBio;
+  String? region;
+  String? personalBio;
 
   factory BSProfileRequest.fromJson(Map<String, dynamic> json) =>
       _$BSProfileRequestFromJson(json);

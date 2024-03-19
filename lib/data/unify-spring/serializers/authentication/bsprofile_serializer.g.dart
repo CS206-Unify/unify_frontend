@@ -8,8 +8,8 @@ part of 'bsprofile_serializer.dart';
 
 BSProfileRequest _$BSProfileRequestFromJson(Map<String, dynamic> json) =>
     BSProfileRequest(
-      region: json['region'] as String,
-      personalBio: json['personalBio'] as String,
+      region: json['region'] as String?,
+      personalBio: json['personalBio'] as String?,
     );
 
 Map<String, dynamic> _$BSProfileRequestToJson(BSProfileRequest instance) =>
