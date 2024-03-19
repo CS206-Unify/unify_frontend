@@ -15,7 +15,7 @@ void createTeam(CreateTeamRequest createTeamRequest) async {
     final result = await http.get(
         Uri.parse(unify_client.unifyProfileServiceUrl),
         headers: {
-          HttpHeaders.authorizationHeader: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCZW5qYW1pbkdhbiIsImlhdCI6MTcxMDY5OTE0MCwiZXhwIjoxNzExMjU0MjAyfQ.NwTjNQdOIfxW_9JAKlVvQYazdnMKCwZnouAjqyHUnmA",
+          HttpHeaders.authorizationHeader: "Bearer ${await SecureStorage.getToken()}",
           HttpHeaders.contentTypeHeader: "application/json",
         },);
 
@@ -34,7 +34,7 @@ void createTeam(CreateTeamRequest createTeamRequest) async {
     final res = await http.post(
         Uri.parse("${unify_client.unifyServerBaseUrl}/team"),
         headers: {
-          HttpHeaders.authorizationHeader: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0VXNlciIsImlhdCI6MTcxMDY5MTg3OCwiZXhwIjoxNzExMjQ2OTQwfQ.9HIM5UBV9AjpE2yhCvvqttrGap4_xnZkI2ZqmjYdKtQ",
+          HttpHeaders.authorizationHeader: "Bearer ${await SecureStorage.getToken()}",
           HttpHeaders.contentTypeHeader: "application/json",
         },
         body: jsonEncode(createTeamRequest.toJson()));
