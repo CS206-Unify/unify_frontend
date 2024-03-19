@@ -134,9 +134,40 @@ class _EditTeamPageState extends State<EditTeamPage> {
                   ),
                 ]),
           ),
+          //List of members
+          Card(
+            color: Colors.transparent, // Set the color to transparent
+            elevation: 0, // Optionally, set the elevation to 0 to remove shadow
+            child: ListTile(
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(5), // Adjust the border radius as needed
+                child: Image.asset(
+                  'assets/images/avatars/BenjaminGan.png',
+                  width: 40, // Set the desired width
+                  height: 40, // Set the desired height
+                ),
+              ),
+              title: Text('Benjamin Gan'),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('114,918'),
+                  SizedBox(width:10), 
+                  Image.asset(
+                    'assets/images/brawlstars/misc/Trophy.png', // Replace with your image path
+                    width: 24, // Set the desired width
+                    height: 24, // Set the desired height
+                  ),
+                  // Adjust the spacing between the image and text
+                ],
+              ),
+            ),
+          ),
+
           const SizedBox(
             height: 10.0,
           ),
+          //Recruitment Requirements
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
@@ -174,7 +205,7 @@ class _EditTeamPageState extends State<EditTeamPage> {
                   filled: true, constraints: BoxConstraints.expand()),
             ),
           ),
-                    const SizedBox(
+          const SizedBox(
             height: 20.0,
           ),
           Center(
@@ -187,7 +218,7 @@ class _EditTeamPageState extends State<EditTeamPage> {
                   filled: true, constraints: BoxConstraints.expand()),
             ),
           ),
-                    const SizedBox(
+          const SizedBox(
             height: 20.0,
           ),
           Center(
@@ -201,27 +232,26 @@ class _EditTeamPageState extends State<EditTeamPage> {
             ),
           ),
 
-           SizedBox(height: 30),
-            Center(
-              child: FilledButton(
-                onPressed: () {
-                  //Pending Function
-                },
-                child: Text(
-                  'Leave Team',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.error,
-                  ),
-                  ),
-                style: FilledButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.errorContainer,
+          SizedBox(height: 30),
+          Center(
+            child: FilledButton(
+              onPressed: () {
+                //Pending Function
+              },
+              child: Text(
+                'Leave Team',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.error,
                 ),
               ),
+              style: FilledButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.errorContainer,
+              ),
             ),
+          ),
         ],
       ),
       bottomNavigationBar: const BottomNavBar(current: "brawl_stars_profile"),
-
     );
   }
 }
