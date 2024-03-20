@@ -157,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                           itemCount: data?['bsProfileListingList'].length,
                           itemBuilder: (context, index) {
                             Map<String, dynamic> player = data?['bsProfileListingList'][index];
-                            return RecommendationCard(route: '/player_details/:${player['_id']}', display: PlayerDetails(region: player['region'], trophies: player['trophies'].toString(), name: player['username'], avatarUrl: 'BenjaminGan.png',));
+                            return RecommendationCard(route: '/player_details/${player['_id']}', display: PlayerDetails(region: player['region'], trophies: player['trophies'].toString(), name: player['username'], avatarUrl: 'BenjaminGan.png',));
                           },
                         );
                       } else {
@@ -202,7 +202,7 @@ class _HomePageState extends State<HomePage> {
                               final String team3v3Wins = team['threeVThreeWins'] ?? "0";
                               final String team2v2Wins = team['twoVTwoWinds'] ?? "0";
                               final String teamSoloWins = team['soloWins'] ?? "0";
-                              return RecommendationCard(route: '/team_details/:${team['_id']}', display: TeamDetails(id: team['_id'], region: region, teamStats: [int.parse(teamTrophies), int.parse(team3v3Wins), int.parse(team2v2Wins), int.parse(teamSoloWins)]));
+                              return RecommendationCard(route: '/team_details/${team['_id']}', display: TeamDetails(id: team['_id'], region: region, teamStats: [int.parse(teamTrophies), int.parse(team3v3Wins), int.parse(team2v2Wins), int.parse(teamSoloWins)]));
                             },
                           );
                         } else {
