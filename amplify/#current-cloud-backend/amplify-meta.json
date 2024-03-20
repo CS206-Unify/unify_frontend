@@ -1,0 +1,73 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-unifyfrontend-dev-175847-authRole",
+      "UnauthRoleArn": "arn:aws:iam::760321635295:role/amplify-unifyfrontend-dev-175847-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::760321635295:role/amplify-unifyfrontend-dev-175847-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-unifyfrontend-dev-175847-deployment",
+      "UnauthRoleName": "amplify-unifyfrontend-dev-175847-unauthRole",
+      "StackName": "amplify-unifyfrontend-dev-175847",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:760321635295:stack/amplify-unifyfrontend-dev-175847/7273eda0-e6a0-11ee-88b1-0a461082c853",
+      "AmplifyAppId": "dzg10cp1yok2g"
+    }
+  },
+  "auth": {
+    "unifyfrontendd567d59c": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-unifyfrontend-dev-175847-deployment/amplify-cfn-templates/auth/unifyfrontendd567d59c-cloudformation-template.json",
+        "logicalId": "authunifyfrontendd567d59c"
+      },
+      "lastPushTimeStamp": "2024-03-20T10:03:48.311Z",
+      "output": {
+        "UserPoolId": "ap-southeast-1_sM1fKRa1A",
+        "AppClientIDWeb": "5nm56ve7o869cvctt32s50vhel",
+        "AppClientID": "7m06ie7r89kj0fuevtfv4eb61l",
+        "IdentityPoolId": "ap-southeast-1:77960572-d534-48ba-931a-804e930d2933",
+        "UserPoolArn": "arn:aws:cognito-idp:ap-southeast-1:760321635295:userpool/ap-southeast-1_sM1fKRa1A",
+        "IdentityPoolName": "unifyfrontendd567d59c_identitypool_d567d59c__dev",
+        "UserPoolName": "unifyfrontendd567d59c_userpool_d567d59c"
+      },
+      "lastPushDirHash": "jCTowaq5D8RuWEcapY4KXrzPvd4="
+    }
+  },
+  "storage": {
+    "images": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "lastPushTimeStamp": "2024-03-20T10:03:48.311Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-unifyfrontend-dev-175847-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "logicalId": "storageimages"
+      },
+      "output": {
+        "BucketName": "unify-cs206175847-dev",
+        "Region": "ap-southeast-1"
+      },
+      "lastPushDirHash": "ctiYFYNBv2036tZB/P6uxgCXRd0="
+    }
+  }
+}
