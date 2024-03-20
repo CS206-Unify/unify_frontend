@@ -78,8 +78,9 @@ Future<List<UserBsTeamsListing>> getUserBsTeamsListing() async {
 
     if (res.statusCode == 200) {
       List<UserBsTeamsListing> teams =
-          (json.decode(res.body)["bsTeams"] as List)
-              .map((item) => UserBsTeamsListing.fromMap(item))
+          (json.decode(res.body)["bsTeamListings"] as List<dynamic>)
+              .map((item) =>
+                  UserBsTeamsListing.fromMap(item as Map<String, dynamic>))
               .toList();
 
       return teams;

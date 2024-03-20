@@ -1,10 +1,9 @@
 class UserBsTeamsListing {
   final String id;
   final String name;
-  final String imgUrl;
+  final String? imgUrl;
 
-  UserBsTeamsListing(
-      {required this.id, required this.name, required this.imgUrl});
+  UserBsTeamsListing({required this.id, required this.name, this.imgUrl});
 
   factory UserBsTeamsListing.fromMap(Map<String, dynamic> map) {
     return UserBsTeamsListing(

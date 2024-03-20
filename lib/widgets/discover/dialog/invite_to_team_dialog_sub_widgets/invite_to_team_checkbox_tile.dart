@@ -30,7 +30,8 @@ class InviteToTeamCheckboxTile extends StatelessWidget {
                       child: team.imgUrl == ""
                           ? const Image(
                               image: AssetImage('assets/images/logos/BS.png'))
-                          : Image.network(team.imgUrl),
+                          : Image.network(
+                              team.imgUrl ?? 'assets/avatars/teamLogo.png'),
                     ),
                   ),
                   Text(shrinkText(team.name))
