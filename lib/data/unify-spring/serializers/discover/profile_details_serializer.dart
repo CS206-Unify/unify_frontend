@@ -5,7 +5,7 @@ class ProfileDetails {
   final String username;
   final String region;
   final int trophies;
-  final String imgUrl;
+  final String? imgUrl;
   final String bio;
   final String joinDate;
   final List<String> teams;
@@ -23,7 +23,7 @@ class ProfileDetails {
       required this.username,
       required this.region,
       required this.trophies,
-      required this.imgUrl,
+      this.imgUrl,
       required this.bio,
       required this.joinDate,
       required this.teams,
