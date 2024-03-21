@@ -104,7 +104,7 @@ class _ManagePageState extends State<ManagePage> {
                             return const CircularProgressIndicator();
                           } else if (snapshot.hasError) {
                             return Text('${snapshot.error}');
-                          } else if (snapshot.hasData) {
+                          } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                             List<Map<String, dynamic>> teams = snapshot.data!;
                             return ListView.builder(
                               shrinkWrap: true,
