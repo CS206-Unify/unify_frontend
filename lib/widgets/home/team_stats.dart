@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class TeamStats extends StatelessWidget {
-  final int trophies;
-  final int wins3v3;
-  final int duoWins;
-  final int soloWins;
+  final String trophies;
+  final String wins3v3;
+  final String duoWins;
+  final String soloWins;
 
   TeamStats(
       {Key? key,
