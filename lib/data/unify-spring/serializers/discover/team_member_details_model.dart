@@ -12,7 +12,7 @@ class TeamMemberDetails {
   factory TeamMemberDetails.fromMap(Map<String, dynamic> map) {
     return TeamMemberDetails(
       name: map["username"],
-      trophies: map["trophies"],
+      trophies: map["bsProfile"]["player"]["trophies"],
       imageUrl: map["imageString"],
     );
   }

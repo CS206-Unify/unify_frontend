@@ -72,6 +72,8 @@ class _TeamBioScreenState extends State<TeamBioScreen> {
             itemCount: widget.memberList.length,
             itemBuilder: (context, index) {
               return FutureBuilder(
+                  key: ValueKey(
+                      widget.memberList[index].id), // Ensures uniqueness
                   future: getTeamMemberDetailsById(widget.memberList[index].id),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {

@@ -12,8 +12,8 @@ class MemberItem extends StatefulWidget {
 }
 
 class _MemberItemState extends State<MemberItem> {
-  final TeamMemberDetails member = TeamMemberDetails(
-      name: 'Benjamin Gan', trophies: 114918, imageUrl: 'path/to/avatar1.png');
+  // final TeamMemberDetails member = TeamMemberDetails(
+  //     name: 'Benjamin Gan', trophies: 114918, imageUrl: 'path/to/avatar1.png');
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _MemberItemState extends State<MemberItem> {
         height: 40, // Set your desired height
       ),
       title: Text(
-        member.name,
+        widget.member.name,
         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
               color: Color.fromARGB(255, 241, 238, 238),
               fontSize: 16.0,
@@ -43,7 +43,7 @@ class _MemberItemState extends State<MemberItem> {
             MainAxisSize.min, // makes the Row only as wide as its children
         children: [
           Text(
-            '${member.trophies}',
+            '${widget.member.trophies}',
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 13.0,
