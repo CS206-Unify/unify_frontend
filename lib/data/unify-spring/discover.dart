@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:unify/data/unify-spring/serializers/discover/team_details_model.dart';
 import 'package:unify/data/unify-spring/serializers/discover/team_listing_model.dart';
 import 'package:unify/data/unify-spring/serializers/discover/team_member_details_model.dart';
-import 'package:unify/data/unify-spring/serializers/discover/team_member_model.dart';
 import 'package:unify/data/unify-spring/serializers/discover/user_bs_teams_serializer.dart';
 import 'package:unify/data/unify-spring/serializers/error/common_error_serializer.dart';
 import 'package:unify/main.dart';
@@ -123,8 +122,6 @@ Future<List<TeamListing>> discoverTeam(String region, int trophies, int wins3v3,
               "Bearer ${await SecureStorage.getToken()}"
         });
 
-    print(json.decode(res.body));
-
     List<TeamListing> teams =
         (json.decode(res.body)['bsTeamListings'] as List<dynamic>)
             .map((item) => TeamListing.fromMap(item as Map<String, dynamic>))
@@ -144,8 +141,6 @@ Future<TeamDetails> getTeamDetailsById(String teamId) async {
       HttpHeaders.authorizationHeader:
           "Bearer ${await SecureStorage.getToken()}"
     });
-
-    print(json.decode(res.body)["bsTeam"]);
 
     return TeamDetails.fromMap(
         json.decode(res.body)["bsTeam"] as Map<String, dynamic>);
