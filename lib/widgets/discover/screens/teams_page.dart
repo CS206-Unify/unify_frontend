@@ -51,7 +51,7 @@ class _TeamsPageState extends State<TeamsPage> {
                       itemBuilder: (BuildContext context, int index) => Column(
                             children: [
                               const SizedBox(
-                                height: 24,
+                                height: 40,
                               ),
                               TeamCard(
                                 id: _teams[index].id,

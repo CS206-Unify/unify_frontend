@@ -34,59 +34,51 @@ class TeamCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-        elevation: 2,
-        child: InkWell(
-          onTap: () {
-            router.go("/team_details/$id");
-          },
-          child: Container(
-            width: double.infinity - 32,
-            height: 168,
-            color: const Color.fromRGBO(44, 41, 47, 1),
-            padding: const EdgeInsets.all(8),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Column(
-                // mainAxisAlignment:
-                //     MainAxisAlignment.start, // Adjust vertical alignment
-                crossAxisAlignment:
-                    CrossAxisAlignment.start, // Adjust horizontal alignment
+      elevation: 2,
+      child: InkWell(
+        onTap: () {
+          router.go("/team_details/$id");
+        },
+        child: Container(
+          width: double.infinity,
+          height: 185,
+          color: const Color.fromRGBO(44, 41, 47, 1),
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TeamBanner(
-                        imageUrl: imageUrl,
-                        teamName: teamName,
-                        maximumTeamSize: maximumTeamSize,
-                        currentTeamSize: currentTeamSize,
-                      ),
-                      Align(
-                        alignment: Alignment
-                            .topRight, // Align to the top right of the Row
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(
-                              40, 5, 5, 0), // Add some padding if needed
-                          child: Text(
-                            region, // Replace with your region name variable
-                            style: TextStyle(
-                              // Add your text style
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  TeamBanner(
+                    imageUrl: imageUrl,
+                    teamName: teamName,
+                    maximumTeamSize: maximumTeamSize,
+                    currentTeamSize: currentTeamSize,
                   ),
-                  TeamRequirementStatistics(
-                      trophies: requiredTrophies,
-                      soloWins: soloWins,
-                      wins2v2: wins2v2,
-                      wins3v3: wins3v3)
+                  Text(
+                    region,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      // fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
-            ]),
+              SizedBox(height: 8),
+              Expanded(
+                flex: 1,
+                child: TeamRequirementStatistics(
+                  trophies: requiredTrophies,
+                  soloWins: soloWins,
+                  wins2v2: wins2v2,
+                  wins3v3: wins3v3,
+                ),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
