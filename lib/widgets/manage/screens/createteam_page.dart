@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:unify/data/unify-spring/create_team.dart';
 import 'package:unify/data/unify-spring/serializers/manage/create_team_serializer.dart';
 import 'package:unify/model/manage/create_team_model.dart';
+import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/common/nav/top_app_bar.dart';
 import 'package:unify/widgets/manage/form/create_team_form.dart';
 import 'package:http/http.dart' as http; 
@@ -102,6 +103,7 @@ class _CreateTeamPageState extends State<CreateTeamPage> {
           )
         ],
       ),
+      bottomNavigationBar: const BottomNavBar(current: "manage"),
     );
   }
 }
