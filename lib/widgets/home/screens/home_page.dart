@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
 
     final userDetails = await getUserDetails();
 
-    final region = userDetails['user']['region'] ?? "AP";
+    final region = userDetails['user']['region'] ?? "Any";
     final language = userDetails['user']['language'] ?? "English";
     final trophies = userDetails['user']['bsProfile']['trophies'] ?? "0";
     final threeVThreeWins = userDetails['user']['bsProfile']['threeVsThreeVictories'] ?? "0";
@@ -198,11 +198,11 @@ class _HomePageState extends State<HomePage> {
                             itemBuilder: (context, index) {
                               Map<String, dynamic> team = data?['bsTeamListings'][index];
                               final String region = team['region'] ?? "Any";
-                              final String teamTrophies = team['trophies'] ?? "0";
-                              final String team3v3Wins = team['threeVThreeWins'] ?? "0";
-                              final String team2v2Wins = team['twoVTwoWinds'] ?? "0";
-                              final String teamSoloWins = team['soloWins'] ?? "0";
-                              return RecommendationCard(route: '/team_details/${team['_id']}', display: TeamDetails(id: team['_id'], region: region, teamStats: [int.parse(teamTrophies), int.parse(team3v3Wins), int.parse(team2v2Wins), int.parse(teamSoloWins)]));
+                              final String teamTrophies = team['trophyRequirements'].toString();
+                              final String team3v3Wins = team['min3v3Wins'].toString();
+                              final String team2v2Wins = team['minDuoWins'].toString();
+                              final String teamSoloWins = team['minSoloWins'].toString();
+                              return RecommendationCard(route: '/team_details/${team['_id']}', display: TeamDetails(id: team['_id'], region: region, teamStats: [teamTrophies, team3v3Wins, team2v2Wins, teamSoloWins]));
                             },
                           );
                         } else {
