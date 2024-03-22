@@ -5,19 +5,14 @@ class ImageUploadForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.topCenter,
-      children: <Widget>[
-        Positioned(
-          bottom: 10,
-          right: 130,
-          child: Icon(
-            const IconData(0xef8d, fontFamily: 'MaterialIcons'),
-            color: Theme.of(context).colorScheme.secondary,
-            size: 30.0,
-          ),
-        ),
-      ],
+    return CircleAvatar(
+      radius: 70.0,
+      backgroundColor: Theme.of(context).colorScheme.onSecondary,
+      child: Icon(
+        const IconData(0xe130, fontFamily: 'MaterialIcons'),
+        color: Theme.of(context).colorScheme.secondary,
+        size: 40.0,
+      ),
     );
   }
 }

@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:unify/widgets/manage/form/edit_team_main_form.dart';
 
 class TeamDetailsSection extends StatelessWidget {
-  const TeamDetailsSection({super.key});
+  const TeamDetailsSection(
+      {super.key,
+      required this.teamNameController,
+      required this.regionController,
+      required this.maxTeamSizeController});
+
+  final TextEditingController teamNameController;
+  final TextEditingController regionController;
+  final TextEditingController maxTeamSizeController;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +24,10 @@ class TeamDetailsSection extends StatelessWidget {
                 .titleMedium
                 ?.apply(color: Theme.of(context).colorScheme.secondary),
             "Team Details"),
-        const EditTeamMainForm()
+        EditTeamMainForm(
+            teamNameController: teamNameController,
+            regionController: regionController,
+            maxTeamSizeController: maxTeamSizeController),
       ],
     );
   }

@@ -1,35 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:unify/model/discover/edit_team_model.dart';
 import 'package:unify/utils/constants/filter_dropdown_choices.dart';
-import 'package:unify/widgets/discover/form/dropdown_menu/filter_dropdown_menu.dart';
 
 class EditTeamRequirementsForm extends StatelessWidget {
-  const EditTeamRequirementsForm({super.key});
+  const EditTeamRequirementsForm(
+      {super.key,
+      required this.trophyRequirementsController,
+      required this.minWins3v3Controller,
+      required this.minWins2v2Controller,
+      required this.minSoloWinsController});
+
+  final TextEditingController trophyRequirementsController;
+  final TextEditingController minWins3v3Controller;
+  final TextEditingController minWins2v2Controller;
+  final TextEditingController minSoloWinsController;
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<EditTeamModel>(
-        builder: (context, formValues, child) => Wrap(
-              direction: Axis.vertical,
-              spacing: 24,
-              children: [
-                FilterDropdownMenu(
-                    choices: trophiesEntries,
-                    label: "Trophy Requirements",
-                    onSelected: (value) => formValues.setMinTrophies(value)),
-                FilterDropdownMenu(
-                    label: "Min. 3v3 Wins",
-                    choices: wins3v3Entries,
-                    onSelected: (value) => formValues.setMinWins3v3(value)),
-                FilterDropdownMenu(
-                    choices: wins2v2Entries,
-                    label: "Min. 2v2 Wins",
-                    onSelected: (value) => formValues.setMinWins2v2(value)),
-                FilterDropdownMenu(
-                    label: "Min. Solo Wins",
-                    choices: soloWinsEntries,
-                    onSelected: (value) => formValues.setMinWinsSolo(value)),              ],
-            ));
+    return Wrap(
+      direction: Axis.vertical,
+      spacing: 24,
+      children: [
+        DropdownMenu(
+            controller: trophyRequirementsController,
+            width: MediaQuery.of(context).size.width - 48,
+            label: const Text("Trophy Requirements"),
+            inputDecorationTheme: const InputDecorationTheme(
+                filled: true, constraints: BoxConstraints.expand()),
+            dropdownMenuEntries: trophiesEntries),
+        DropdownMenu(
+            controller: minWins3v3Controller,
+            width: MediaQuery.of(context).size.width - 48,
+            label: const Text("Min. 3v3 Wins"),
+            inputDecorationTheme: const InputDecorationTheme(
+                filled: true, constraints: BoxConstraints.expand()),
+            dropdownMenuEntries: wins3v3Entries),
+        DropdownMenu(
+            controller: minWins2v2Controller,
+            width: MediaQuery.of(context).size.width - 48,
+            label: const Text("Min. 2v2 Wins"),
+            inputDecorationTheme: const InputDecorationTheme(
+                filled: true, constraints: BoxConstraints.expand()),
+            dropdownMenuEntries: wins2v2Entries),
+        DropdownMenu(
+            controller: minSoloWinsController,
+            width: MediaQuery.of(context).size.width - 48,
+            label: const Text("Min. Solo Wins"),
+            inputDecorationTheme: const InputDecorationTheme(
+                filled: true, constraints: BoxConstraints.expand()),
+            dropdownMenuEntries: soloWinsEntries),
+      ],
+    );
   }
 }
