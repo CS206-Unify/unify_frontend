@@ -119,7 +119,7 @@ class _ManagePageState extends State<ManagePage> {
                                 int maxTeamSize = team['maximumTeamSize'];
                                 int memberListSize = team['memberList'].length;
                                 return GestureDetector(
-                                  onTap: () => {context.go("/edit_team/:$teamId")}, 
+                                  onTap: () => {context.go("/edit_team/$teamId")}, 
                                   child: TeamManageCard(
                                     teamId: teamId,
                                     teamName: teamName,

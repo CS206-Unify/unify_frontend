@@ -78,7 +78,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/edit_team/:id',
       builder: (BuildContext context, GoRouterState state) {
-        return const EditTeamPage();
+        return EditTeamPage(teamId: state.pathParameters["id"] ?? "");
       },
     ),
     GoRoute(
