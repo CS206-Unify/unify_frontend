@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:unify/data/unify-spring/discover.dart';
+import 'package:unify/data/unify-spring/manage_team.dart';
+import 'package:unify/data/unify-spring/serializers/manage/edit_team_serializer.dart';
 import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/common/nav/top_app_bar.dart';
 import 'package:unify/widgets/manage/form/image_upload_form.dart';
@@ -79,6 +81,22 @@ class _EditTeamPageState extends State<EditTeamPage> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           Logger().d(_trophyRequirementsController.value.text);
+                          editTeam(
+                              widget.teamId,
+                              EditTeamRequest(
+                                  teamName: _teamNameController.value.text,
+                                  region: _regionController.value.text,
+                                  maximumTeamSize: int.parse(
+                                      _maxTeamSizeController.value.text),
+                                  imageString: null,
+                                  trophyRequirements: int.parse(
+                                      _trophyRequirementsController.value.text),
+                                  min3v3Wins: int.parse(
+                                      _minWins3v3Controller.value.text),
+                                  minDuoWins: int.parse(
+                                      _minWins2v2Controller.value.text),
+                                  minSoloWins: int.parse(
+                                      _minSoloWinsController.value.text)));
                         }
                       },
                       child: const Text(
