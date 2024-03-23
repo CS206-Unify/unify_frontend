@@ -5,6 +5,7 @@ import 'package:unify/data/unify-spring/manage_team.dart';
 import 'package:unify/data/unify-spring/serializers/manage/edit_team_serializer.dart';
 import 'package:unify/widgets/common/nav/bottom_navigation_bar.dart';
 import 'package:unify/widgets/common/nav/top_app_bar.dart';
+import 'package:unify/widgets/discover/section/team_members_section.dart';
 import 'package:unify/widgets/manage/form/image_upload_form.dart';
 import 'package:unify/widgets/manage/section/team_details_section.dart';
 import 'package:unify/widgets/manage/section/team_requirements_section.dart';
@@ -69,6 +70,7 @@ class _EditTeamPageState extends State<EditTeamPage> {
                     teamNameController: _teamNameController,
                     regionController: _regionController,
                     maxTeamSizeController: _maxTeamSizeController),
+                TeamMembersSection(teamId: widget.teamId,),
                 TeamRequirementsSections(
                     trophyRequirementsController: _trophyRequirementsController,
                     minWins3v3Controller: _minWins3v3Controller,
