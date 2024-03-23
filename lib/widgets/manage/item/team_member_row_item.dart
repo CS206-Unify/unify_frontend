@@ -1,29 +1,26 @@
 import 'package:unify/data/unify-spring/serializers/discover/team_member_details_model.dart';
 import 'package:flutter/material.dart';
-import 'package:unify/data/unify-spring/serializers/discover/team_member_model.dart';
 import 'package:unify/utils/formatter/number_formatter.dart';
 
-class MemberItem extends StatefulWidget {
-  MemberItem({Key? key, required this.member}) : super(key: key);
+class TeamMemberRow extends StatefulWidget {
+  const TeamMemberRow({super.key, required this.member});
 
   final TeamMemberDetails member;
 
   @override
-  _MemberItemState createState() => _MemberItemState();
+  State<TeamMemberRow> createState() => _TeamMemberRowState();
 }
 
-class _MemberItemState extends State<MemberItem> {
-  // final TeamMemberDetails member = TeamMemberDetails(
-  //     name: 'Benjamin Gan', trophies: 114918, imageUrl: 'path/to/avatar1.png');
-
+class _TeamMemberRowState extends State<TeamMemberRow> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: EdgeInsets.zero,
       leading: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
               12), // Adjust the radius here to match your design
-          image: DecorationImage(
+          image: const DecorationImage(
             image: AssetImage(
                 "assets/images/avatars/BenjaminGan.png"), // Replace with your actual image path
             fit: BoxFit.cover,
@@ -34,11 +31,13 @@ class _MemberItemState extends State<MemberItem> {
       ),
       title: Text(
         widget.member.name,
-        style: Theme.of(context).textTheme.titleSmall!.apply(color: Theme.of(context).colorScheme.primary),
+        style: Theme.of(context)
+            .textTheme
+            .titleSmall!
+            .apply(color: Theme.of(context).colorScheme.primary),
       ),
-      trailing: Row(
-        mainAxisSize:
-            MainAxisSize.min, // makes the Row only as wide as its children
+      trailing: Wrap(
+        spacing: 8,
         children: [
           Text(
             thousandFormatter(widget.member.trophies ?? 0),
@@ -47,7 +46,6 @@ class _MemberItemState extends State<MemberItem> {
                   fontSize: 13.0,
                 ),
           ),
-          SizedBox(width: 8),
           Image.asset("assets/images/brawlstars/misc/Trophy.png",
               height: 25.0, width: 25.0),
         ],
